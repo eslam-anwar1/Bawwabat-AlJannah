@@ -204,6 +204,11 @@
 
     <!-- 4. شاشة الصوتيات والأناشيد المبهجة بدون إيقاع -->
     <section class="app-screen" id="screen-audio">
+      <!-- شريط البحث في الأناشيد -->
+      <div style="margin-bottom: 14px;">
+        <input type="text" id="audio-search-input" placeholder="🔍 ابحث في الأناشيد والتلاوات (اسم النشيد، المنشد، الفئة...)" style="width: 100%; padding: 11px 16px; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); font-family: 'Cairo', sans-serif; font-size: 0.9rem; background: #FFF; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: border-color 0.2s;" />
+      </div>
+
       <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px;">
         <span style="font-weight: bold; color: #92400E; font-size: 0.9rem;">أناشيد وتلاوات نقية بدون إيقاع 🎶</span>
         <p style="font-size: 0.78rem; color: #78350F; margin-top: 2px;">أناشيد مبهجة للأطفال عن الأم والصلاة، وتلاوات قرآنية خاشعة تبعث على السكينة.</p>
@@ -333,9 +338,10 @@
           <span style="font-weight: bold; color: var(--primary-emerald);">تحديد موقعك لمواقيت دقيقة:</span>
         </div>
         <select id="city-selector" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #CBD5E1; margin-bottom: 10px; font-family: 'Cairo', sans-serif;">
+          <option value="غزة (فلسطين الحبيبة - التوقيت الشتوي)" selected>🇵🇸 غزة (فلسطين الحبيبة - التوقيت الشتوي)</option>
+          <option value="القدس الشريف">القدس الشريف</option>
           <option value="مكة المكرمة (أم القرى)">مكة المكرمة (أم القرى)</option>
           <option value="المدينة المنورة">المدينة المنورة</option>
-          <option value="القدس الشريف">القدس الشريف</option>
           <option value="القاهرة">القاهرة</option>
           <option value="الرياض">الرياض</option>
           <option value="دبي">دبي</option>
@@ -565,6 +571,9 @@
         <span>🔁</span>
         <span>بدء التكرار والتحفيظ الذكي</span>
       </button>
+
+      <!-- مشغل صوتي مباشر عالي التوافق -->
+      <audio id="quran-html5-audio" controls style="width: 100%; height: 38px; margin-top: 10px; border-radius: 8px; outline: none;"></audio>
     </div>
   </div>
 

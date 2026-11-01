@@ -89,8 +89,13 @@ const RawhApp = {
     if (headerTitle) headerTitle.innerText = titles[tabId] || 'بوابة الجنة';
 
     // تنشيط شاشات الألعاب أو السور عند الانتقال لها
-    if (tabId === 'games' && typeof RawhMemoryGame !== 'undefined') {
-      if (!RawhMemoryGame.cards || RawhMemoryGame.cards.length === 0) RawhMemoryGame.startNewGame();
+    if (tabId === 'games') {
+      if (typeof RawhMemoryGame !== 'undefined') RawhMemoryGame.startNewGame();
+      if (typeof RawhQuiz !== 'undefined') {
+        RawhQuiz.renderQuestion();
+        RawhQuiz.renderRiddle();
+        RawhQuiz.renderWordGame();
+      }
     }
     if (tabId === 'quran' && typeof RawhQuran !== 'undefined') {
       RawhQuran.renderSurahList();
@@ -100,6 +105,12 @@ const RawhApp = {
     }
     if (tabId === 'home' && typeof RawhGarden !== 'undefined') {
       RawhGarden.renderGarden();
+    }
+    if (tabId === 'audio') {
+      this.setupAudioList();
+    }
+    if (tabId === 'dhikr') {
+      this.renderDhikrItems();
     }
   },
 
@@ -141,6 +152,48 @@ const RawhApp = {
     this.renderDhikrItems();
   },
 
+  currentDhikrBtn: null,
+
+  speakDhikr(text, btnEl) {
+    if ('speechSynthesis' in window) {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (this.currentDhikrBtn) {
+          this.currentDhikrBtn.classList.remove('speaking');
+          this.currentDhikrBtn.innerHTML = '<span>🔊</span> <span>استمع</span>';
+        }
+        if (this.currentDhikrBtn === btnEl) {
+          this.currentDhikrBtn = null;
+          return;
+        }
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ar-SA';
+      utterance.rate = 0.88;
+      
+      btnEl.classList.add('speaking');
+      btnEl.innerHTML = '<span>⏹️</span> <span>جارٍ القراءة...</span>';
+      this.currentDhikrBtn = btnEl;
+
+      utterance.onend = () => {
+        btnEl.classList.remove('speaking');
+        btnEl.innerHTML = '<span>🔊</span> <span>استمع</span>';
+        this.currentDhikrBtn = null;
+      };
+
+      utterance.onerror = () => {
+        btnEl.classList.remove('speaking');
+        btnEl.innerHTML = '<span>🔊</span> <span>استمع</span>';
+        this.currentDhikrBtn = null;
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(text);
+    }
+  },
+
   renderDhikrItems() {
     const container = document.getElementById('dhikr-items-list');
     if (!container) return;
@@ -152,14 +205,29 @@ const RawhApp = {
       <div class="dhikr-card" id="dhikr-card-${item.id}">
         <p class="dhikr-text">${item.text}</p>
         <div class="dhikr-reward-tag">${item.reward}</div>
-        <div class="dhikr-counter-action">
-          <button class="dhikr-press-btn" data-id="${item.id}" data-max="${item.count}" data-current="${item.count}">
-            <span class="count-num">${item.count}</span>
-            <span class="count-sub">اضغط للتكرار</span>
+        <div class="dhikr-actions-row">
+          <button class="dhikr-sound-btn" data-text="${encodeURIComponent(item.text)}" title="استماع للذكر مسموعاً">
+            <span>🔊</span>
+            <span>استمع</span>
           </button>
+          <div class="dhikr-counter-action">
+            <button class="dhikr-press-btn" data-id="${item.id}" data-max="${item.count}" data-current="${item.count}">
+              <span class="count-num">${item.count}</span>
+              <span class="count-sub">اضغط للتكرار</span>
+            </button>
+          </div>
         </div>
       </div>
     `).join('');
+
+    // تفعيل الاستماع الصوتي لكل ذكر
+    container.querySelectorAll('.dhikr-sound-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = decodeURIComponent(btn.getAttribute('data-text'));
+        this.speakDhikr(text, btn);
+      });
+    });
 
     // تفعيل التفاعل مع كل ذكر
     container.querySelectorAll('.dhikr-press-btn').forEach(btn => {
@@ -178,7 +246,10 @@ const RawhApp = {
             btn.querySelector('.count-num').innerText = '✓';
             btn.querySelector('.count-sub').innerText = 'تم بحمد الله';
             RawhGarden.playWaterSound();
-            RawhStorage.addXP(5, 'إتمام ذكر');
+            RawhStorage.addXP(10, 'إتمام ذكر');
+            const data = RawhStorage.getGardenData();
+            data.waterDrops = (data.waterDrops || 0) + 1;
+            RawhStorage.saveGardenData(data);
           }
         }
       });
@@ -313,32 +384,68 @@ const RawhApp = {
     RawhStorage.addXP(15, 'قراءة قصة');
   },
 
-  // إعداد قائمة الصوتيات
+  // إعداد قائمة الصوتيات مع البحث الفوري
   setupAudioList() {
     const container = document.getElementById('audio-tracks-list');
+    const searchInput = document.getElementById('audio-search-input');
     if (!container) return;
 
-    container.innerHTML = RawhContent.audioTracks.map((track, idx) => `
-      <div class="audio-track-item" data-index="${idx}">
-        <div class="track-play-avatar">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </div>
-        <div class="track-details">
-          <div class="track-name">${track.title}</div>
-          <div class="track-sub">${track.artist} • <span class="text-gold">${track.categoryName}</span></div>
-        </div>
-        <div class="track-duration">${track.duration}</div>
-      </div>
-    `).join('');
+    const renderTracks = (filter = '') => {
+      let tracks = RawhContent.audioTracks || [];
+      if (filter) {
+        const query = filter.toLowerCase().trim();
+        tracks = tracks.filter(t => 
+          t.title.toLowerCase().includes(query) ||
+          t.artist.toLowerCase().includes(query) ||
+          (t.categoryName && t.categoryName.toLowerCase().includes(query))
+        );
+      }
 
-    container.querySelectorAll('.audio-track-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const idx = parseInt(item.getAttribute('data-index'));
-        RawhPlayer.playTrackByIndex(idx);
+      if (tracks.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 30px; color: var(--text-muted); background: #FFF; border-radius: 12px; border: 1px dashed #CBD5E1;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
+            <p style="font-weight: bold;">لم نجد أي نشيد أو تلاوة تطابق "${filter}"</p>
+            <p style="font-size: 0.8rem; margin-top: 4px;">جرّب كتابة كلمة أخرى مثل "أمي" أو "الصلاة" أو "رمضان"</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = tracks.map((track) => `
+        <div class="audio-track-item" data-id="${track.id}">
+          <div class="track-play-avatar">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <div class="track-details">
+            <div class="track-name">${track.title}</div>
+            <div class="track-sub">${track.artist} • <span class="text-gold">${track.categoryName}</span></div>
+          </div>
+          <div class="track-duration">${track.duration}</div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.audio-track-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const trackId = item.getAttribute('data-id');
+          const targetTrack = RawhContent.audioTracks.find(t => t.id === trackId);
+          if (targetTrack && window.RawhPlayer) {
+            RawhPlayer.playTrack(targetTrack);
+          }
+        });
       });
-    });
+    };
+
+    renderTracks();
+
+    if (searchInput && !searchInput.dataset.bound) {
+      searchInput.dataset.bound = 'true';
+      searchInput.addEventListener('input', (e) => {
+        renderTracks(e.target.value);
+      });
+    }
   },
 
   // قسم حول التطبيق والتوثيق الرسمي الصارم

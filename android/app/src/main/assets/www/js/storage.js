@@ -110,13 +110,20 @@ const RawhStorage = {
   waterGarden() {
     const data = this.getGardenData();
     if (data.waterDrops <= 0) {
-      return { success: false, message: 'لا توجد قطرات ماء كافية! أتمم ذكراً أو قصة لكسب الماء 💧' };
+      data.waterDrops = 3;
     }
 
     data.waterDrops -= 1;
     data.totalWateredTimes = (data.totalWateredTimes || 0) + 1;
-    data.xp = (data.xp || 0) + 15; // السقاية تمنح 15 حسنة
+    data.xp = (data.xp || 0) + 25; // السقاية تمنح 25 حسنة
     data.lastWateredDate = new Date().toISOString();
+
+    // تحديث المستوى الفوري للحديقة حسب النقاط المكتسبة
+    if (data.xp >= 600) data.level = 5;
+    else if (data.xp >= 350) data.level = 4;
+    else if (data.xp >= 175) data.level = 3;
+    else if (data.xp >= 75) data.level = 2;
+    else data.level = 1;
 
     // فحص الشارات
     if (data.totalWateredTimes >= 1 && !data.badges.includes('first_water')) {

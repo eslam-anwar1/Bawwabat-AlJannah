@@ -109,7 +109,7 @@ const RawhContent = {
     }
   ],
 
-  // قسم الصوتيات والأنشودات الخاشعة والمبهجة بدون إيقاع
+  // قسم الصوتيات والأنشودات الخاشعة والمبهجة بدون إيقاع (مكتبة شاملة وكبيرة)
   audioTracks: [
     {
       id: "kids-nasheed-mother",
@@ -119,7 +119,7 @@ const RawhContent = {
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "03:40",
       src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/001.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
       cover: "assets/icons/app-icon.svg"
     },
     {
@@ -130,7 +130,7 @@ const RawhContent = {
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "03:15",
       src: "assets/audio/nasheed_prayer.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/002.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2.mp3",
       cover: "assets/icons/app-icon.svg"
     },
     {
@@ -141,7 +141,7 @@ const RawhContent = {
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "02:50",
       src: "assets/audio/nasheed_arkan.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/114.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/112.mp3",
       cover: "assets/icons/app-icon.svg"
     },
     {
@@ -152,7 +152,139 @@ const RawhContent = {
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "03:30",
       src: "assets/audio/nasheed_badr.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/001.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-tayba",
+      title: "يا طيبة يا دوا العيانا (شوق للمدينة المنورة)",
+      artist: "أطفال المدينة",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "04:10",
+      src: "assets/audio/nasheed_badr.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-qamarun",
+      title: "قمرٌ سيدنا النبي قمر (مديح مبهج)",
+      artist: "مصطفى عاطف (بدون إيقاع)",
+      category: "nasheed",
+      categoryName: "أناشيد الروح",
+      duration: "04:05",
+      src: "assets/audio/nasheed_mother.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/36.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-raqat-aynaya",
+      title: "رقت عيناي شوقاً ولطيبة ذرفت عشقاً",
+      artist: "ماهر زين (بدون موسيقى)",
+      category: "nasheed",
+      categoryName: "أناشيد الروح",
+      duration: "04:22",
+      src: "assets/audio/nasheed_prayer.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/67.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-farshi-turab",
+      title: "فرشي التراب (لحن نقي هادئ بدون إيقاع)",
+      artist: "مشاري العرادة رحمه الله",
+      category: "nasheed",
+      categoryName: "أناشيد الروح",
+      duration: "04:30",
+      src: "assets/audio/peace_tone.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/55.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-quran-hafez",
+      title: "يا حافظ القرآن هنيئاً لك الوقار",
+      artist: "أناشيد تكريم الحفاظ",
+      category: "quran_nasheed",
+      categoryName: "أناشيد القرآن",
+      duration: "03:55",
+      src: "assets/audio/quran_fatihah.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-sawfa-nabqa",
+      title: "سوف نبقى هنا كي يزول الألم (أمل وصمود)",
+      artist: "د. رامي محمد",
+      category: "nasheed",
+      categoryName: "أناشيد الروح",
+      duration: "04:12",
+      src: "assets/audio/nasheed_prayer.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/18.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "kids-nasheed-eid",
+      title: "أهلاً بالعيد مرحى (بهجة وفرحة الصغار)",
+      artist: "براعم الجنة",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "03:00",
+      src: "assets/audio/success_chime.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/113.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "kids-nasheed-teacher",
+      title: "معلمي يا قدوتي ونبراس دربي",
+      artist: "كورال الوفاء المدرسي",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "03:20",
+      src: "assets/audio/nasheed_mother.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "kids-nasheed-parents",
+      title: "بر الوالدين طريق إلى الفردوس",
+      artist: "أطفال الإيمان",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "03:45",
+      src: "assets/audio/nasheed_mother.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/31.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-ilahi",
+      title: "إلهي لست للفردوس أهلاً (دعاء خاشع)",
+      artist: "أبو عمار (صوت خاشع)",
+      category: "duas",
+      categoryName: "أدعية وأذكار صوتية",
+      duration: "04:50",
+      src: "assets/audio/peace_tone.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/59.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-ramadan",
+      title: "يا رمضان هلّ هلالك بالخير والغفران",
+      artist: "أناشيد مواسم الطاعات",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "03:35",
+      src: "assets/audio/nasheed_badr.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/97.mp3",
+      cover: "assets/icons/app-icon.svg"
+    },
+    {
+      id: "nasheed-tawheed",
+      title: "لا إله إلا الله حصني المنيع",
+      artist: "أناشيد العقيدة للأطفال",
+      category: "kids_nasheed",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "02:40",
+      src: "assets/audio/nasheed_arkan.wav",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/112.mp3",
       cover: "assets/icons/app-icon.svg"
     },
     {
@@ -163,40 +295,18 @@ const RawhContent = {
       categoryName: "تلاوات خاشعة",
       duration: "03:15",
       src: "assets/audio/quran_fatihah.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/001.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-farshi-turab",
-      title: "فرشي التراب (لحن نقي هادئ بدون إيقاع)",
-      artist: "مشاري العرادة رحمه الله",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:30",
-      src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/055.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-sawfa-nabqa",
-      title: "سوف نبقى هنا كي يزول الألم (بدون إيقاع)",
-      artist: "د. رامي محمد",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:12",
-      src: "assets/audio/nasheed_prayer.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/018.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
       cover: "assets/icons/app-icon.svg"
     },
     {
       id: "dua-shifa",
-      title: "دعاء الشفاء والسكينة وراحة البال",
+      title: "دعاء الشفاء والسكينة وراحة البال والقلب",
       artist: "تلاوة وخشوع نبوي",
       category: "duas",
       categoryName: "أدعية وأذكار صوتية",
       duration: "05:05",
       src: "assets/audio/peace_tone.wav",
-      fallbackSrc: "https://server8.mp3quran.net/afs/113.mp3",
+      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/113.mp3",
       cover: "assets/icons/app-icon.svg"
     }
   ],

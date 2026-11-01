@@ -4,25 +4,27 @@
  */
 
 const RawhPrayerTimes = {
-  // المدن الافتراضية الجاهزة في حال عدم تفعيل GPS
+  // المدن الافتراضية الجاهزة في حال عدم تفعيل GPS (الافتراضي: غزة العزة - التوقيت الشتوي)
   CITIES: [
+    { name: "غزة (فلسطين الحبيبة - التوقيت الشتوي)", lat: 31.5017, lng: 34.4668, tz: 2, method: "MWL" },
+    { name: "القدس الشريف", lat: 31.7683, lng: 35.2137, tz: 2, method: "MWL" },
     { name: "مكة المكرمة (أم القرى)", lat: 21.4225, lng: 39.8262, tz: 3, method: "Makkah" },
     { name: "المدينة المنورة", lat: 24.5247, lng: 39.5692, tz: 3, method: "Makkah" },
-    { name: "القدس الشريف", lat: 31.7683, lng: 35.2137, tz: 3, method: "MWL" },
     { name: "القاهرة", lat: 30.0444, lng: 31.2357, tz: 2, method: "Egypt" },
     { name: "الرياض", lat: 24.7136, lng: 46.6753, tz: 3, method: "Makkah" },
     { name: "دبي", lat: 25.2048, lng: 55.2708, tz: 4, method: "Gulf" },
-    { name: "عَمّان", lat: 31.9454, lng: 35.9284, tz: 3, method: "MWL" },
+    { name: "عَمّان", lat: 31.9454, lng: 35.9284, tz: 2, method: "MWL" },
     { name: "بغداد", lat: 33.3152, lng: 44.3661, tz: 3, method: "MWL" },
     { name: "إسطنبول", lat: 41.0082, lng: 28.9784, tz: 3, method: "MWL" },
     { name: "الرباط", lat: 34.0209, lng: -6.8416, tz: 1, method: "MWL" }
   ],
 
   currentLocation: {
-    name: "مكة المكرمة (أم القرى)",
-    lat: 21.4225,
-    lng: 39.8262,
-    tz: 3
+    name: "غزة (فلسطين الحبيبة - التوقيت الشتوي)",
+    lat: 31.5017,
+    lng: 34.4668,
+    tz: 2,
+    method: "MWL"
   },
 
   times: {},

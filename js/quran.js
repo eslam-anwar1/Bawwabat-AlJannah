@@ -219,17 +219,47 @@ const RawhQuran = {
         `).join(' ');
       }
     } else {
-      // عرض جميل مع رابط القراءة المباشر
+      // تحميل الآيات مباشرة من واجهة القرآن السحابية
       if (basmalahBox) basmalahBox.style.display = surahNumber !== 9 ? 'block' : 'none';
       if (contentBox) {
         contentBox.innerHTML = `
-          <div class="mushaf-full-note">
-            <p>سورة ${surahMeta.name} المباركة (${surahMeta.verses} آيات - ${surahMeta.type})</p>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
-              اضغط على زر (تشغيل التحفيظ بالأسفل) للاستماع بترديد الأطفال والتكرار المبارك.
-            </p>
+          <div style="text-align: center; padding: 25px; color: var(--primary-emerald);">
+            <div style="font-size: 1.8rem; margin-bottom: 8px;">📖✨</div>
+            <p style="font-weight: bold;">سورة ${surahMeta.name} المباركة (${surahMeta.verses} آيات - ${surahMeta.type})</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">جارٍ استرجاع الآيات الكريمة كاملة...</p>
           </div>
         `;
+
+        fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.data && data.data.ayahs) {
+              const ayahs = data.data.ayahs.map(a => ({
+                num: a.numberInSurah,
+                text: a.text.replace(/^بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ\s*/, '')
+              }));
+              RawhQuranData.surahTexts[surahNumber] = {
+                name: `سورة ${surahMeta.name}`,
+                bismillah: surahNumber !== 9,
+                ayahs: ayahs
+              };
+              contentBox.innerHTML = ayahs.map(a => `
+                <span class="ayah-segment" data-ayah="${a.num}">
+                  ${a.text} <span class="ayah-end-icon">۝${a.num}</span>
+                </span>
+              `).join(' ');
+            }
+          })
+          .catch(err => {
+            console.warn('API cloud fetch note:', err);
+            contentBox.innerHTML = `
+              <div class="mushaf-full-note" style="text-align: center; padding: 20px;">
+                <p style="font-weight: bold; font-size: 1.1rem; color: var(--primary-emerald);">سورة ${surahMeta.name} المباركة</p>
+                <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.9rem;">${surahMeta.type} • ${surahMeta.verses} آيات • الجزء ${Math.ceil(surahMeta.page / 20)}</p>
+                <p style="margin-top: 14px; font-weight: bold; color: #166534;">استمع للتلاوة العذبة الآن عبر زر التحفيظ بالأسفل 🎧👇</p>
+              </div>
+            `;
+          });
       }
     }
 
@@ -253,30 +283,40 @@ const RawhQuran = {
     this.currentRepeatCount = 0;
     this.quranAudio.src = audioUrl;
 
+    const nativeAudio = document.getElementById('quran-html5-audio');
+    if (nativeAudio) {
+      nativeAudio.src = audioUrl;
+      nativeAudio.style.display = 'block';
+    }
+
     const counterEl = document.getElementById('quran-repeat-live-badge');
     if (counterEl) {
       const totalStr = this.repeatTarget === -1 ? 'دائم ♾️' : this.repeatTarget;
-      counterEl.innerText = `بدء التكرار: 1 من ${totalStr} (${reciter.name})`;
+      counterEl.innerText = `التكرار: 1 من ${totalStr} (${reciter.name})`;
     }
 
-    this.quranAudio.play().then(() => {
-      this.isPlaying = true;
-      this.updatePlayBtnDom(true);
-    }).catch(err => {
-      console.warn('Audio play failed, fallback serene audio', err);
-      // تجربة تشغيل الفاتحة المحلية إذا كانت السورة 1
-      if (surahNumber === 1) {
-        this.quranAudio.src = 'assets/audio/quran_fatihah.wav';
-        this.quranAudio.play().then(() => {
-          this.isPlaying = true;
-          this.updatePlayBtnDom(true);
-        }).catch(() => {
-          if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(`سورة ${surahNumber}`);
-        });
-      } else if (window.RawhPlayer) {
-        RawhPlayer.fallbackSyntheticPeaceAudio(`سورة ${surahNumber}`);
-      }
-    });
+    const p = this.quranAudio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        this.isPlaying = true;
+        this.updatePlayBtnDom(true);
+      }).catch(err => {
+        console.warn('Audio programmatic autoplay restricted, engaging fallback/native', err);
+        if (nativeAudio) {
+          nativeAudio.play().then(() => {
+            this.isPlaying = true;
+            this.updatePlayBtnDom(true);
+          }).catch(() => {});
+        }
+        if (surahNumber === 1) {
+          this.quranAudio.src = 'assets/audio/quran_fatihah.wav';
+          this.quranAudio.play().then(() => {
+            this.isPlaying = true;
+            this.updatePlayBtnDom(true);
+          }).catch(() => {});
+        }
+      });
+    }
   },
 
   toggleQuranPlayback() {

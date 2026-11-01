@@ -279,10 +279,19 @@ const RawhQuiz = {
       if (resultBox) {
         resultBox.style.display = 'block';
         resultBox.className = 'word-game-result success';
-        resultBox.innerHTML = `<strong>أحسنت! ترتيب متقن وصحيح ✨</strong><br>${game.reference}`;
+        resultBox.innerHTML = `<strong>أحسنت! ترتيب متقن وصحيح ✨ (+15 حسنة وماء للحديقة)</strong><br>${game.reference}`;
       }
       RawhGarden.playWaterSound();
       RawhStorage.addXP(15, 'ترتيب حديث نبوي صحيح');
+      const data = RawhStorage.getGardenData();
+      data.waterDrops = (data.waterDrops || 0) + 1;
+      RawhStorage.saveGardenData(data);
+      if (window.RawhGarden) RawhGarden.renderGarden();
+
+      setTimeout(() => {
+        this.activeArrangeIndex = (this.activeArrangeIndex + 1) % RawhContent.wordArrangements.length;
+        this.renderWordGame();
+      }, 2800);
     } else {
       if (resultBox) {
         resultBox.style.display = 'block';
