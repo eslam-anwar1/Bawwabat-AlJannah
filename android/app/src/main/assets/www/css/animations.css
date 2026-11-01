@@ -1,0 +1,91 @@
+/* ===================================================================
+   رَوْح - المؤثرات الحركية والتفاعلية الناعمة
+=================================================================== */
+
+/* أنيميشن قطرات الماء لسقاية الحديقة */
+.animated-droplet {
+  position: absolute;
+  top: 10px;
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(circle at 35% 35%, #7DD3FC, #0284C7);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: rotate(-45deg);
+  pointer-events: none;
+  animation: fallDroplet 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+}
+
+@keyframes fallDroplet {
+  0% {
+    opacity: 0.9;
+    transform: translateY(0) scale(0.8) rotate(-45deg);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(130px) scale(1) rotate(-45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(145px) scale(1.6) rotate(-45deg);
+  }
+}
+
+/* تأثير الظهور السلس للبطاقات والأسئلة */
+.pop-in {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* نبض ذهبي خفيف للبوصلة عند محاذاة القبلة */
+.qibla-aligned {
+  animation: qiblaGlowPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes qiblaGlowPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 32px rgba(212, 175, 55, 0.7);
+  }
+}
+
+/* تموج الماء التفاعلي */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.ripple:focus:not(:active)::after {
+  animation: rippleEffect 0.6s ease-out;
+}
+
+@keyframes rippleEffect {
+  0% { transform: scale(0, 0); opacity: 0.5; }
+  100% { transform: scale(40, 40); opacity: 0; }
+}

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>بوابة الجنة | طريقك إلى الفردوس الأعلى</title>
+  <meta name="description" content="تطبيق إسلامي وثقافي وترفيهي فخم - قرآن كريم، تكرار للتحفيظ، قصص أطفال فيديو وقراءة، أناشيد، ومواقيت صلاة">
+  <meta name="theme-color" content="#0B3B24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="بوابة الجنة">
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/app-icon.svg">
+  <link rel="manifest" href="./manifest.json">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/animations.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       الشريط العلوي (App Header)
+  =================================================================== -->
+  <header class="app-header">
+    <div class="header-brand">
+      <img src="./assets/icons/app-icon.svg" alt="شعار بوابة الجنة" class="header-logo-icon">
+      <div class="header-title-group">
+        <h1 id="top-bar-title">بوابة الجنة</h1>
+        <span>سكينة • حياة • طمأنينة</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-header-icon" id="btn-header-about" title="حول التطبيق والتوثيق">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       حاوية الشاشات الرئيسية
+  =================================================================== -->
+  <main class="app-container">
+
+    <!-- 1. الشاشة الرئيسية (Home Screen) -->
+    <section class="app-screen active" id="screen-home">
+      <!-- الاقتباس والنفحة اليومية -->
+      <div class="daily-quote-card">
+        <span class="quote-badge">إشراقة اليوم المباركة</span>
+        <div class="quote-body" id="daily-quote-text">"أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"</div>
+        <div class="quote-source" id="daily-quote-source">سورة الرعد: 28</div>
+      </div>
+
+      <!-- حديقة الفردوس الافتراضية (نظام الجذب الذكي والإدمان الإيجابي) -->
+      <div class="garden-hero-card">
+        <div class="garden-stats-bar">
+          <div class="streak-pill">
+            <span>🔥</span>
+            <span id="streak-count-val">1 يوم</span>
+          </div>
+          <div class="water-pill">
+            <span>💧</span>
+            <span id="water-drops-val">3 قطرات</span>
+          </div>
+          <div class="xp-pill">
+            <span>🌱</span>
+            <span id="garden-xp-val">40 حسنة</span>
+          </div>
+        </div>
+
+        <div class="garden-visual-stage" id="garden-visual-stage">
+          <!-- يتم حقن رسمة الشجرة التفاعلية هنا -->
+        </div>
+
+        <div class="garden-level-tag" id="garden-level-name">بذرة الإيمان الطيبة</div>
+        <div class="garden-progress-wrapper">
+          <div class="garden-progress-bar" id="garden-progress-bar" style="width: 30%;"></div>
+        </div>
+        <div class="garden-progress-label" id="garden-progress-label">اسقِ حديقتك لتنمو وتزهر في رياض الجنة</div>
+
+        <button class="btn-water-garden" id="btn-water-garden">
+          <span>💧</span>
+          <span>اسقِ حديقة الجنة اليومية (+15 حسنة)</span>
+        </button>
+
+        <!-- أوسمة وشارات الإنجاز -->
+        <div class="garden-badges-list" id="garden-badges-list">
+          <!-- محقونة برمجياً -->
+        </div>
+      </div>
+
+      <!-- روابط الوصول السريع لأقسام الصغار والقرآن -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+        <button class="btn-kids-action btn-read" data-goto="quran" style="padding: 14px 10px;">
+          <span>📖</span>
+          <span>المصحف والتحفيظ الذكي</span>
+        </button>
+        <button class="btn-kids-action btn-watch" data-goto="kids_stories" style="padding: 14px 10px;">
+          <span>🎬</span>
+          <span>قصص أطفال فيديو وقراءة</span>
+        </button>
+      </div>
+
+      <!-- بطاقة مواقيت الصلاة السريعة والعد التنازلي -->
+      <div class="prayer-summary-card">
+        <div class="location-bar">
+          <div class="city-pill">
+            <span>📍</span>
+            <span id="current-city-label">مكة المكرمة</span>
+          </div>
+          <button class="btn-gps" id="btn-gps-location">
+            <span>🛰️</span>
+            <span>تحديث موقعي (GPS)</span>
+          </button>
+        </div>
+
+        <div class="next-prayer-hero">
+          <div class="next-prayer-title">الصلاة القادمة بإذن الله</div>
+          <div class="next-prayer-name" id="next-prayer-name">صلاة الظهر</div>
+          <div class="next-prayer-time" id="next-prayer-time">12:15 م</div>
+          <div class="next-prayer-countdown" id="next-prayer-countdown">متبقي: ساعتان و 10 دقائق</div>
+        </div>
+
+        <div class="prayers-grid">
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>🌅</span>
+              <span class="prayer-name">الفجر</span>
+            </div>
+            <span class="prayer-time-val" id="time-fajr">04:55 ص</span>
+          </div>
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>☀️</span>
+              <span class="prayer-name">الشروق</span>
+            </div>
+            <span class="prayer-time-val" id="time-sunrise">06:18 ص</span>
+          </div>
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>🌤️</span>
+              <span class="prayer-name">الظهر</span>
+            </div>
+            <span class="prayer-time-val" id="time-dhuhr">12:15 م</span>
+          </div>
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>⛅</span>
+              <span class="prayer-name">العصر</span>
+            </div>
+            <span class="prayer-time-val" id="time-asr">03:35 م</span>
+          </div>
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>🌇</span>
+              <span class="prayer-name">المغرب</span>
+            </div>
+            <span class="prayer-time-val" id="time-maghrib">06:05 م</span>
+          </div>
+          <div class="prayer-grid-item">
+            <div class="prayer-label-group">
+              <span>🌌</span>
+              <span class="prayer-name">العشاء</span>
+            </div>
+            <span class="prayer-time-val" id="time-isha">07:35 م</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. شاشة القرآن الكريم الشامل والتحفيظ الذكي -->
+    <section class="app-screen" id="screen-quran">
+      <div class="quran-header-bar">
+        <input type="text" id="quran-search-input" class="quran-search-input" placeholder="🔍 ابحث عن سورة بالاسم أو الرقم...">
+      </div>
+
+      <!-- بطاقة ميزة تكرار التحفيظ للأطفال والكبار -->
+      <div style="background: #FEFCE8; border: 1.5px solid #FDE047; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.8rem;">🔁</span>
+        <div>
+          <div style="font-weight: bold; color: #854D0E; font-size: 0.95rem;">ميزة التحفيظ الذكي والتكرار</div>
+          <div style="font-size: 0.78rem; color: #713F12;">اختر أي سورة واضغط على (حَفِّظْ) لتكرار الآيات مع ترديد الأطفال بصوت الشيخ الحصري!</div>
+        </div>
+      </div>
+
+      <div id="quran-surahs-list">
+        <!-- محقونة برمجياً -->
+      </div>
+    </section>
+
+    <!-- 3. شاشة قصص الأطفال الدينية والتربوية (فيديو وقراءة) -->
+    <section class="app-screen" id="screen-kids_stories">
+      <div style="background: var(--emerald-gradient); color: #FFF; border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px; border: 1.5px solid var(--gold-primary);">
+        <h3 style="font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--gold-light); margin-bottom: 4px;">مسرح وقصص براعم الجنة 🌟</h3>
+        <p style="font-size: 0.85rem; color: #A7F3D0; line-height: 1.5;">مكتبة ساحرة من قصص بر الأم، عظمة الصلاة، ومواقف الأنبياء معروضة بالقراءة التفاعلية والفيديو الممتع!</p>
+      </div>
+
+      <div class="kids-stories-cards-grid" id="kids-stories-cards-grid">
+        <!-- محقونة برمجياً -->
+      </div>
+    </section>
+
+    <!-- 4. شاشة الصوتيات والأناشيد المبهجة بدون إيقاع -->
+    <section class="app-screen" id="screen-audio">
+      <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px;">
+        <span style="font-weight: bold; color: #92400E; font-size: 0.9rem;">أناشيد وتلاوات نقية بدون إيقاع 🎶</span>
+        <p style="font-size: 0.78rem; color: #78350F; margin-top: 2px;">أناشيد مبهجة للأطفال عن الأم والصلاة، وتلاوات قرآنية خاشعة تبعث على السكينة.</p>
+      </div>
+
+      <div class="audio-tracks-list" id="audio-tracks-list">
+        <!-- محقونة برمجياً -->
+      </div>
+    </section>
+
+    <!-- 5. شاشة الأذكار وحصن المسلم والرقية -->
+    <section class="app-screen" id="screen-dhikr">
+      <!-- المسبحة الإلكترونية الذكية -->
+      <div class="tasbeeh-card">
+        <select class="tasbeeh-phrase-select" id="tasbeeh-phrase-select">
+          <option value="سبحان الله وبحمده">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</option>
+          <option value="الحمد لله">الْحَمْدُ لِلَّهِ</option>
+          <option value="لا إله إلا الله">لَا إِلَهَ إِلَّا اللَّهُ</option>
+          <option value="الله أكبر">اللَّهُ أَكْبَرُ</option>
+          <option value="أستغفر الله وأتوب إليه">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</option>
+          <option value="اللهم صل وسلم على نبينا محمد">اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ</option>
+          <option value="لا حول ولا قوة إلا بالله">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</option>
+        </select>
+
+        <button class="tasbeeh-ring-btn" id="tasbeeh-click-btn">
+          <span class="tasbeeh-val" id="tasbeeh-display-val">0</span>
+          <span class="tasbeeh-label">اضغط للتسبيح</span>
+        </button>
+
+        <div class="tasbeeh-controls">
+          <button class="btn-reset-tasbeeh" id="btn-reset-tasbeeh">تصفير العداد</button>
+          <div class="tasbeeh-total-text">مجموع التسبيحات: <strong id="tasbeeh-total-val">0</strong></div>
+        </div>
+      </div>
+
+      <!-- فئات الأذكار والرقية الشرعية -->
+      <div class="dhikr-tabs-nav" id="dhikr-tabs-nav">
+        <!-- محقونة برمجياً -->
+      </div>
+
+      <div class="dhikr-items-list" id="dhikr-items-list">
+        <!-- محقونة برمجياً -->
+      </div>
+    </section>
+
+    <!-- 6. شاشة الألعاب والألغاز الخرافية (الإدمان الإيجابي) -->
+    <section class="app-screen" id="screen-games">
+      <!-- لعبة بطاقات الجنة السحرية (Memory Match Game) -->
+      <div class="memory-game-card">
+        <div class="game-card-header">
+          <div class="game-title">لعبة بطاقات الجنة السحرية 🎴</div>
+          <button class="btn-reset-tasbeeh" id="btn-restart-memory" style="background: var(--gold-gradient); color: #062215;">لعبة جديدة 🔄</button>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">طابق أزواج الرموز الإيمانية بأقل عدد حركات لكسب ماء الحديقة والحسنات:</p>
+        
+        <div class="memory-stats-bar">
+          <div>الحركات: <span id="memory-moves-val" style="color: var(--primary-emerald);">0</span></div>
+          <div>التطابق: <span id="memory-matches-val" style="color: var(--gold-primary);">0/8</span></div>
+          <div>الوقت: <span id="memory-timer-val" style="color: #0284C7;">00:00</span></div>
+        </div>
+
+        <div class="memory-board-grid" id="memory-board-grid"></div>
+
+        <div class="memory-victory-modal" id="memory-victory-modal" style="display: none;">
+          <h3 style="color: #166534; margin-bottom: 6px;">مبارك يا بطل! انتصار رائع 🏆✨</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 10px;">أتممت اللعبة في <strong id="victory-moves-val"></strong> واستغرقت <strong id="victory-time-val"></strong></p>
+          <div style="font-weight: bold; color: var(--gold-primary);">نلت +30 حسنة وقطرة ماء إضافية لحديقتك! 💧🌱</div>
+        </div>
+      </div>
+
+      <!-- تحدي بوابة الجنة الثقافي -->
+      <div class="quiz-game-card">
+        <div class="game-card-header">
+          <div class="game-title">مسابقة فرسان الجنة الثقافية ⚔️</div>
+          <span class="quiz-progress-badge" id="quiz-progress-text">السؤال 1 من 8</span>
+        </div>
+
+        <div id="quiz-active-area">
+          <div class="quiz-question-title" id="quiz-question-title">جارٍ تحميل السؤال...</div>
+          <div class="quiz-options-list" id="quiz-options-list"></div>
+          <div class="quiz-feedback-box" id="quiz-feedback-box" style="display: none;"></div>
+          <button class="btn-game-action" id="btn-next-question" style="display: none;">السؤال التالي ⬅️</button>
+        </div>
+
+        <div id="quiz-summary-area" style="display: none; text-align: center; padding: 20px 0;">
+          <h3 style="color: var(--primary-emerald); margin-bottom: 8px;">مبارك! أتممت التحدي بنجاح 🏆</h3>
+          <p style="font-size: 1.1rem; margin-bottom: 14px;">نتيجتك: <strong id="quiz-final-score">8 من 8</strong></p>
+          <button class="btn-game-action" id="btn-restart-quiz">خوض التحدي من جديد 🔄</button>
+        </div>
+      </div>
+
+      <!-- لغز اليوم -->
+      <div class="riddle-game-card">
+        <div class="game-card-header">
+          <div class="game-title">لغز وفكرة اليوم 💡</div>
+        </div>
+        <p id="riddle-title" style="font-size: 1rem; font-weight: 600; line-height: 1.6; margin-bottom: 10px;"></p>
+        <div id="riddle-hint-text" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;"></div>
+        <div id="riddle-answer-box" style="display: none; background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; padding: 12px; border-radius: 8px; font-weight: bold; margin-bottom: 12px;"></div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-game-action" id="btn-reveal-riddle">اكشف الإجابة 🔍</button>
+          <button class="btn-game-action" id="btn-next-riddle" style="background: #FFF; color: var(--primary-emerald); border-color: #CBD5E1;">لغز آخر 🎲</button>
+        </div>
+      </div>
+
+      <!-- لعبة ترتيب كلمات الحديث الشريف -->
+      <div class="word-game-card">
+        <div class="game-card-header">
+          <div class="game-title">رتّب الحديث النبوي الشريف 📜</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">انقر على الكلمات بالترتيب الصحيح لتكوين الحديث النبوي الشريف:</p>
+        <div class="word-arranged-container" id="word-arranged-container"></div>
+        <div class="word-pool-container" id="word-pool-container"></div>
+        <div class="word-game-result" id="word-game-result" style="display: none;"></div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn-game-action" id="btn-check-word-arrange">تحقق من الترتيب ✨</button>
+          <button class="btn-game-action" id="btn-reset-word-arrange" style="background: #FEE2E2; color: #DC2626; border-color: #FCA5A5;">إعادة 🔄</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. شاشة أدوات المسلم والمواقيت والقبلة الحية -->
+    <section class="app-screen" id="screen-tools">
+      <!-- اختيار المدينة وتحديد الموقع -->
+      <div class="prayer-summary-card">
+        <div class="location-bar">
+          <span style="font-weight: bold; color: var(--primary-emerald);">تحديد موقعك لمواقيت دقيقة:</span>
+        </div>
+        <select id="city-selector" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #CBD5E1; margin-bottom: 10px; font-family: 'Cairo', sans-serif;">
+          <option value="مكة المكرمة (أم القرى)">مكة المكرمة (أم القرى)</option>
+          <option value="المدينة المنورة">المدينة المنورة</option>
+          <option value="القدس الشريف">القدس الشريف</option>
+          <option value="القاهرة">القاهرة</option>
+          <option value="الرياض">الرياض</option>
+          <option value="دبي">دبي</option>
+          <option value="عَمّان">عَمّان</option>
+          <option value="بغداد">بغداد</option>
+          <option value="إسطنبول">إسطنبول</option>
+          <option value="الرباط">الرباط</option>
+        </select>
+        <div id="location-status-text" style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;"></div>
+
+        <h4 style="color: var(--primary-emerald); margin: 14px 0 8px; font-size: 0.95rem;">التحكم بتنبيهات الأذان لكل صلاة:</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+            <span>أذان الفجر</span>
+            <input type="checkbox" id="notif-fajr" class="prayer-notif-switch" checked>
+          </label>
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+            <span>أذان الظهر</span>
+            <input type="checkbox" id="notif-dhuhr" class="prayer-notif-switch" checked>
+          </label>
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+            <span>أذان العصر</span>
+            <input type="checkbox" id="notif-asr" class="prayer-notif-switch" checked>
+          </label>
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+            <span>أذان المغرب</span>
+            <input type="checkbox" id="notif-maghrib" class="prayer-notif-switch" checked>
+          </label>
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+            <span>أذان العشاء</span>
+            <input type="checkbox" id="notif-isha" class="prayer-notif-switch" checked>
+          </label>
+        </div>
+      </div>
+
+      <!-- بوصلة القبلة التفاعلية الحية -->
+      <div class="qibla-card">
+        <h3 style="font-family: 'Amiri', serif; color: var(--primary-emerald); font-size: 1.5rem;">بوصلة القبلة التفاعلية الحية</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">وجّه هاتفك نحو الكعبة المشرفة في مكة المكرمة</p>
+        
+        <button id="btn-qibla-permission" style="display: none; background: var(--gold-primary); color: #062215; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">
+          تفعيل حساس الحركة في الهاتف 🧭
+        </button>
+
+        <div class="compass-container" id="compass-container">
+          <div class="compass-disc" id="compass-disc">
+            <span class="compass-marker marker-n">ش</span>
+            <span class="compass-marker marker-s">ج</span>
+            <span class="compass-marker marker-e">ق</span>
+            <span class="compass-marker marker-w">غ</span>
+          </div>
+          <div class="kaaba-needle" id="kaaba-needle">
+            <span class="kaaba-icon-pointer">🕋</span>
+          </div>
+          <div class="compass-center-pivot"></div>
+        </div>
+
+        <div class="qibla-angle-badge">زاوية القبلة: <span id="qibla-angle-val">0°</span></div>
+        <div class="qibla-status-desc" id="qibla-status-desc">جارٍ موازنة الحساسات...</div>
+
+        <!-- شريط تحريك تجريبي للأجهزة التي لا تملك حساس جيروسكوب -->
+        <div style="margin-top: 16px; padding: 10px; background: #F8FAFC; border-radius: 8px;">
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">تجربة تدوير الهاتف يدوياً (للاختبار والمحاكاة):</div>
+          <input type="range" id="qibla-manual-slider" min="0" max="360" value="0" style="width: 100%; accent-color: var(--primary-emerald);">
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. شاشة حول التطبيق والتوثيق الحصري الصارم -->
+    <section class="app-screen" id="screen-about">
+      <div class="about-hero-card">
+        <img src="./assets/icons/app-icon.svg" alt="بوابة الجنة" class="about-app-logo">
+        <h2 class="about-title">تطبيق بوابة الجنة</h2>
+        <div class="about-version">الإصدار 2.0.0 الماسي (النسخة المتكاملة للمتاجر)</div>
+
+        <!-- التوثيق الرسمي الصارم والحصري كما طلب المستخدم نصاً دون أي تعديل -->
+        <div class="official-credits-banner">
+          <div class="credits-badge-label">التوثيق والحقوق الحصرية</div>
+          <p class="official-statement-text">
+            تم عمل وتطوير هذا التطبيق بواسطة <span class="gold-highlight">المهندسة إسلام أنور الفجم</span>
+          </p>
+        </div>
+
+        <p style="font-size: 0.9rem; line-height: 1.7; color: var(--text-dark); margin: 16px 0;">
+          تطبيق "بوابة الجنة" صُمّم بعناية ليكون دليلك ورفيقك اليومي نحو الفردوس الأعلى، جامعاً بين القرآن الكريم وتكرار التحفيظ للأطفال، قصص بر الوالدين والصلاة، الألعاب الذكية الإدمانية، والسكينة الإيمانية.
+        </p>
+
+        <!-- سياسة الخصوصية وحماية الملفات -->
+        <div class="privacy-notice-box">
+          <h4>🛡️ الخصوصية التامة وحماية البيانات:</h4>
+          <p>
+            • جميع بياناتك من تتابع الأيام، سقاية الحديقة، والتسبيحات تُحفظ محلياً 100% داخل هاتفك ولا تُرسل لأي خادم خارجي.<br>
+            • إحداثيات الموقع الجغرافي تُستخدم فقط داخل جهازك لحساب مواقيت الصلاة واتجاه القبلة ولا يتم تسجيلها نهائياً.<br>
+            • التطبيق خالٍ تماماً من الإعلانات المزعجة ومن أي علامات تجارية أو استضافات خارجية.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       المشغل الصوتي المصغر (Mini Floating Audio Player)
+  =================================================================== -->
+  <div class="mini-player" id="mini-player">
+    <div class="mini-progress-bar">
+      <div class="mini-progress-fill" id="mini-progress-fill"></div>
+    </div>
+    <div class="mini-player-left">
+      <div class="mini-track-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+      </div>
+      <div class="mini-track-meta">
+        <div class="mini-track-title" id="mini-track-title">تلاوة خاشعة</div>
+        <div class="mini-track-artist" id="mini-track-artist">مشاري العفاسي</div>
+      </div>
+    </div>
+    <div class="mini-player-controls">
+      <button class="btn-mini-play" id="mini-play-btn" title="تشغيل / إيقاف">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path id="mini-play-icon" d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       مشغل الصوت الكامل (Full Screen Modal Player)
+  =================================================================== -->
+  <div class="full-player-modal" id="full-player-modal">
+    <div class="player-modal-top">
+      <button class="btn-modal-close" id="player-modal-close">✕</button>
+      <span style="font-weight: 600; font-size: 0.9rem; color: var(--gold-light);">مشغل بوابة الجنة الصوتي</span>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <div class="player-modal-center">
+      <div class="player-vinyl-disc" id="player-vinyl-disc">
+        <div class="disc-inner-artwork" style="font-size: 1rem; text-align: center; line-height: 1.2;">بوابة<br>الجنة</div>
+      </div>
+      <span class="full-track-category" id="full-track-category">تلاوات خاشعة</span>
+      <h2 class="full-track-title" id="full-track-title">سورة الفاتحة وآية الكرسي</h2>
+      <div class="full-track-artist" id="full-track-artist">الشيخ مشاري راشد العفاسي</div>
+    </div>
+
+    <div class="player-modal-bottom">
+      <div class="player-slider-row">
+        <input type="range" class="player-progress-input" id="player-progress" min="0" max="100" value="0">
+        <div class="player-time-labels">
+          <span id="player-current-time">00:00</span>
+          <span id="player-total-time">00:00</span>
+        </div>
+      </div>
+
+      <div class="player-controls-row">
+        <button class="btn-player-action" id="player-prev-btn" title="السابق">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+          </svg>
+        </button>
+        <button class="btn-full-play" id="full-play-btn" title="تشغيل / إيقاف">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path id="full-play-icon" d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+        <button class="btn-player-action" id="player-next-btn" title="التالي">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="player-options-row">
+        <button class="btn-player-opt" id="player-loop-btn" title="تكرار المقطع">تكرار 🔁</button>
+        <button class="btn-player-opt" id="player-speed-btn" title="سرعة التشغيل">1.0x</button>
+        <button class="btn-player-opt" id="player-sleep-btn" title="مؤقت النوم لإيقاف الصوت تلقائياً">مؤقت ⏱️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       نافذة المصحف الشريف وعرض الآيات المريح مع شريط تكرار التحفيظ
+  =================================================================== -->
+  <div class="quran-mushaf-modal" id="quran-mushaf-modal">
+    <div class="mushaf-modal-header">
+      <button class="btn-modal-close" id="btn-close-quran-reader">✕</button>
+      <div style="text-align: center;">
+        <div class="mushaf-header-title" id="mushaf-surah-title">سُورَةُ الفَاتِحَة</div>
+        <div class="mushaf-header-sub" id="mushaf-surah-meta">مكية • 7 آيات</div>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <button id="btn-quran-font-plus" style="background: rgba(255,255,255,0.15); border: none; color: #FFF; width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer;">A+</button>
+        <button id="btn-quran-font-minus" style="background: rgba(255,255,255,0.15); border: none; color: #FFF; width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer;">A-</button>
+      </div>
+    </div>
+
+    <div class="mushaf-reader-body">
+      <div class="mushaf-basmalah" id="mushaf-basmalah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="mushaf-ayahs-box" id="mushaf-ayahs-box">
+        <!-- محقونة برمجياً -->
+      </div>
+    </div>
+
+    <!-- شريط تكرار التحفيظ للأطفال والكبار -->
+    <div class="mushaf-memorize-dock">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <select id="quran-reciter-select" style="padding: 4px 8px; border-radius: 6px; border: 1px solid #CBD5E1; font-family: 'Cairo', sans-serif; font-size: 0.78rem; font-weight: bold; color: var(--primary-emerald); max-width: 65%;">
+          <!-- محقونة برمجياً -->
+        </select>
+        <span class="quran-repeat-live-badge" id="quran-repeat-live-badge">جاهز للتحفيظ</span>
+      </div>
+
+      <div class="memorize-repeat-row">
+        <span style="font-size: 0.75rem; font-weight: bold; color: var(--text-dark);">مرات التكرار:</span>
+        <div class="repeat-pills-group">
+          <button class="btn-repeat-pill" data-repeat="1">1x</button>
+          <button class="btn-repeat-pill active" data-repeat="3">3x</button>
+          <button class="btn-repeat-pill" data-repeat="5">5x</button>
+          <button class="btn-repeat-pill" data-repeat="10">10x</button>
+          <button class="btn-repeat-pill" data-repeat="-1">دائم ♾️</button>
+        </div>
+      </div>
+
+      <button class="btn-memorize-play" id="btn-quran-memorize-play">
+        <span>🔁</span>
+        <span>بدء التكرار والتحفيظ الذكي</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       قارئ قصص الأطفال التفاعلي
+  =================================================================== -->
+  <div class="kids-reader-modal" id="kids-reader-modal">
+    <div class="story-reader-header">
+      <button class="btn-modal-close" id="btn-close-kids-reader">✕</button>
+      <span style="color: var(--gold-light); font-weight: bold;">قصص بوابة الجنة التربوية</span>
+      <div style="width: 40px;"></div>
+    </div>
+    <div class="kids-reader-body">
+      <h2 style="font-family: 'Amiri', serif; font-size: 1.6rem; color: var(--primary-emerald);" id="kids-reader-title"></h2>
+      <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;" id="kids-reader-category"></div>
+      <div id="kids-reader-body"></div>
+      <div id="kids-reader-lessons"></div>
+      <div id="kids-story-quiz-area"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       مسرح القصة الكرتوني والفيديو المشوق لقصص الأطفال
+  =================================================================== -->
+  <div class="kids-video-modal" id="kids-video-modal">
+    <div class="story-reader-header">
+      <button class="btn-modal-close" id="btn-close-video-theater">✕</button>
+      <span style="color: var(--gold-light); font-weight: bold;" id="kids-video-title">مسرح بوابة الجنة</span>
+      <div style="width: 40px;"></div>
+    </div>
+    
+    <div style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 16px 16px calc(20px + var(--safe-bottom));">
+      <!-- أزرار تبديل نمط العرض -->
+      <div class="theater-mode-tabs">
+        <button class="theater-tab-btn active" id="tab-btn-interactive-stage">🎬 مسرح المشاهد التفاعلي</button>
+        <button class="theater-tab-btn" id="tab-btn-video-stream">📺 بث الفيديو المباشر</button>
+      </div>
+
+      <!-- 1. بطاقة المسرح الكرتوني التفاعلي (جاهزة 100% وتعمل دون انقطاع) -->
+      <div class="interactive-theater-card" id="theater-stage-container">
+        <div class="theater-scene-badge" id="theater-scene-badge">المشهد 1 من 4</div>
+        <div class="theater-scene-stage" id="theater-scene-stage">
+          <div class="scene-anim-char pop-in">👦🧕</div>
+        </div>
+        <h3 class="theater-scene-title" id="theater-scene-title">إشراقة الصباح وتقبيل يد الأم</h3>
+        <p class="theater-scene-desc" id="theater-scene-desc">كان سعد يستيقظ مبكراً كل يوم، فيذهب إلى غرفة أمه يقبل رأسها ويديها بحنان ويسألها عن رضاها.</p>
+        
+        <div class="theater-controls-row">
+          <button class="btn-scene-nav" id="btn-theater-prev-scene">السابق ◀</button>
+          <button class="btn-scene-narration" id="btn-theater-narration">
+            <span>🎙️</span>
+            <span>استمع لرواية المشهد</span>
+          </button>
+          <button class="btn-scene-nav" id="btn-theater-next-scene">▶ التالي</button>
+        </div>
+        <div id="theater-yt-link-box"></div>
+      </div>
+
+      <!-- 2. حاوية بث الفيديو المباشر -->
+      <div class="kids-video-frame-container" id="theater-video-container" style="display: none; width: 100%; max-width: 520px;">
+        <iframe id="kids-video-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 14px; text-align: center;">
+        🌟 مسرح بوابة الجنة لغرس القيم الإيمانية وبر الوالدين والصلاة في قلوب أحبابنا الصغار.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       شريط التنقل السفلي (Bottom Navigation)
+  =================================================================== -->
+  <nav class="bottom-nav">
+    <button class="bottom-nav-item active" data-tab="home">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>الرئيسية</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="quran">
+      <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+      <span>القرآن</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="kids_stories">
+      <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 9l-4-2.5V8l4 2.5 4-2.5v1.5L12 12z"/></svg>
+      <span>القصص</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="audio">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      <span>الأناشيد</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="dhikr">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      <span>الأذكار</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="games">
+      <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+      <span>الألعاب</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="tools">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      <span>المواقيت</span>
+    </button>
+  </nav>
+
+  <!-- إشعار Toast العائم -->
+  <div class="app-toast" id="app-toast"></div>
+
+  <!-- ملفات الجافاسكريبت المنظمة والنظيفة -->
+  <script src="./js/content-data.js"></script>
+  <script src="./js/quran-data.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/audio-player.js"></script>
+  <script src="./js/prayer-times.js"></script>
+  <script src="./js/qibla.js"></script>
+  <script src="./js/garden-game.js"></script>
+  <script src="./js/quiz-game.js"></script>
+  <script src="./js/memory-game.js"></script>
+  <script src="./js/kids-stories.js"></script>
+  <script src="./js/quran.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

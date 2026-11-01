@@ -1,0 +1,116 @@
+/* ===================================================================
+   رَوْح - تنسيقات التجاوب التام مع مختلف شاشات الهواتف المحمولة
+=================================================================== */
+
+/* شاشات الهواتف الصغيرة جداً (أقل من 360px مثل iPhone SE) */
+@media (max-width: 360px) {
+  .app-container {
+    padding: 12px;
+  }
+  .header-title-group h1 {
+    font-size: 1.3rem;
+  }
+  .quote-body {
+    font-size: 1.1rem;
+  }
+  .garden-visual-stage {
+    height: 150px;
+  }
+  .compass-container {
+    width: 210px;
+    height: 210px;
+  }
+  .prayers-grid {
+    grid-template-columns: 1fr;
+  }
+  .bottom-nav-item {
+    font-size: 0.65rem;
+  }
+  .bottom-nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* شاشات الهواتف القياسية والمريحة (361px إلى 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+  .prayers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* الأجهزة اللوحية وشاشات الحواسيب المفتوحة */
+@media (min-width: 768px) {
+  .app-container {
+    padding: 24px;
+    max-width: 650px;
+  }
+  .bottom-nav {
+    max-width: 650px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .mini-player {
+    max-width: 620px;
+  }
+}
+
+/* دعم شاشات OLED والوضع الداكن النظيف */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-sand: #0B1410;
+    --card-bg: #111D17;
+    --card-border: rgba(212, 175, 55, 0.15);
+    --text-dark: #E2E8F0;
+    --text-muted: #94A3B8;
+  }
+  .bottom-nav {
+    background: #0D1813;
+    border-top-color: rgba(212, 175, 55, 0.2);
+  }
+  .prayer-grid-item {
+    background: #17241D;
+    border-color: #21352A;
+  }
+  .quiz-option-btn {
+    background: #17241D;
+    border-color: #263D31;
+    color: #E2E8F0;
+  }
+  .word-chip {
+    background: #17241D;
+    border-color: #263D31;
+    color: #E2E8F0;
+  }
+  .word-arranged-container {
+    background: #15221B;
+    border-color: #334E40;
+  }
+  .badge-card {
+    background: #17241D;
+    border-color: #263D31;
+  }
+  .story-reader-modal {
+    background: #0B1410;
+  }
+  .story-reader-lessons {
+    background: #1C1E14;
+    border-color: #3B3919;
+  }
+  .story-reader-lessons ul {
+    color: #FDE047;
+  }
+}
+
+/* دعم الشاشات ذات النتوء العلوي والسفلي (iPhone Notch / Dynamic Island) */
+@supports (padding-top: max(0px)) {
+  .app-header {
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+  .bottom-nav {
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
+    height: calc(62px + max(0px, env(safe-area-inset-bottom)));
+  }
+}

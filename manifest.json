@@ -1,0 +1,21 @@
+{
+  "name": "بوابة الجنة | طريقك إلى الفردوس الأعلى",
+  "short_name": "بوابة الجنة",
+  "description": "تطبيق إسلامي وثقافي وترفيهي فخم - مواقيت صلاة، قبلة حية، أذكار، قصص، وألعاب ذكاء",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#061A12",
+  "theme_color": "#0B3B24",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["lifestyle", "education", "books", "utilities"],
+  "icons": [
+    {
+      "src": "./assets/icons/app-icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Celestial Deep Night Background Gradient -->
+    <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#14532D"/>
+      <stop offset="45%" stop-color="#06331D"/>
+      <stop offset="85%" stop-color="#021B0F"/>
+      <stop offset="100%" stop-color="#010D07"/>
+    </radialGradient>
+
+    <!-- Divine Heavenly Light Burst From Gate -->
+    <radialGradient id="heavenLight" cx="50%" cy="58%" r="48%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="25%" stop-color="#FEF08A" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#FBBF24" stop-opacity="0.65"/>
+      <stop offset="85%" stop-color="#10B981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#06331D" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ultra Luxury Royal Gold Gradient -->
+    <linearGradient id="royalGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="20%" stop-color="#FDE047"/>
+      <stop offset="45%" stop-color="#EAB308"/>
+      <stop offset="70%" stop-color="#CA8A04"/>
+      <stop offset="90%" stop-color="#A16207"/>
+      <stop offset="100%" stop-color="#713F12"/>
+    </linearGradient>
+
+    <!-- Pillar Gold Gradient -->
+    <linearGradient id="pillarGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9A7B1C"/>
+      <stop offset="30%" stop-color="#FEE07A"/>
+      <stop offset="50%" stop-color="#FFFDF0"/>
+      <stop offset="70%" stop-color="#E5C158"/>
+      <stop offset="100%" stop-color="#7A5E0B"/>
+    </linearGradient>
+
+    <!-- Paradise Garden Flora Gradient -->
+    <linearGradient id="floraGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="60%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#6EE7B7"/>
+    </linearGradient>
+
+    <!-- Shimmer Glow Filter -->
+    <filter id="divineGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background App Icon (Squircle / Rounded Square) -->
+  <rect width="512" height="512" rx="116" fill="url(#skyGrad)"/>
+
+  <!-- Celestial Geometric Ring Frame -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#royalGold)" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="6 6"/>
+  <circle cx="256" cy="256" r="224" fill="none" stroke="url(#royalGold)" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Heavenly Rays of Light Emanating From Within the Gate -->
+  <g opacity="0.45">
+    <polygon points="256,260 120,440 160,440" fill="url(#heavenLight)"/>
+    <polygon points="256,260 200,450 250,450" fill="url(#heavenLight)"/>
+    <polygon points="256,260 262,450 312,450" fill="url(#heavenLight)"/>
+    <polygon points="256,260 352,440 392,440" fill="url(#heavenLight)"/>
+    <polygon points="256,260 90,360 120,380" fill="url(#heavenLight)"/>
+    <polygon points="256,260 392,380 422,360" fill="url(#heavenLight)"/>
+  </g>
+
+  <!-- Divine Radial Glow Inside the Gate -->
+  <ellipse cx="256" cy="265" rx="130" ry="150" fill="url(#heavenLight)"/>
+
+  <!-- Lush Paradise Garden Vista Peeking from Gate Interior -->
+  <g opacity="0.9" filter="url(#softShadow)">
+    <path d="M256 160 C240 180 210 195 210 220 C210 240 230 255 245 260 L248 290 L264 290 L267 260 C282 255 302 240 302 220 C302 195 272 180 256 160 Z" fill="url(#floraGrad)"/>
+    <path d="M165 315 Q210 290 256 300 Q302 290 347 315 L347 330 L165 330 Z" fill="#047857"/>
+  </g>
+
+  <!-- ==========================================
+       THE GRAND GOLDEN GATE OF PARADISE (بوابة الجنة)
+       ========================================== -->
+  <g filter="url(#softShadow)">
+    
+    <!-- Outer Arch Frame (The Grand Islamic Horseshoe Arch) -->
+    <path d="M148 340 L148 230 C148 150 200 96 256 70 C312 96 364 150 364 230 L364 340 
+             L340 340 L340 230 C340 162 298 120 256 100 C214 120 172 162 172 230 L172 340 Z" 
+          fill="url(#royalGold)"/>
+
+    <!-- Inner Decorative Arabesque Arch -->
+    <path d="M172 335 L172 235 C172 170 210 130 256 112 C302 130 340 170 340 235 L340 335
+             L328 335 L328 235 C328 178 295 142 256 126 C217 142 184 178 184 235 L184 335 Z"
+          fill="url(#royalGold)" opacity="0.8"/>
+
+    <!-- Left Majestic Pillar -->
+    <rect x="132" y="325" width="36" height="20" rx="4" fill="url(#pillarGold)"/>
+    <rect x="136" y="318" width="28" height="8" rx="2" fill="url(#royalGold)"/>
+    <rect x="140" y="195" width="20" height="124" rx="2" fill="url(#pillarGold)"/>
+    <path d="M134 195 L166 195 L160 180 L140 180 Z" fill="url(#royalGold)"/>
+    <circle cx="150" cy="176" r="6" fill="url(#royalGold)"/>
+
+    <!-- Right Majestic Pillar -->
+    <rect x="344" y="325" width="36" height="20" rx="4" fill="url(#pillarGold)"/>
+    <rect x="348" y="318" width="28" height="8" rx="2" fill="url(#royalGold)"/>
+    <rect x="352" y="195" width="20" height="124" rx="2" fill="url(#pillarGold)"/>
+    <path d="M346 195 L378 195 L372 180 L352 180 Z" fill="url(#royalGold)"/>
+    <circle cx="362" cy="176" r="6" fill="url(#royalGold)"/>
+
+    <!-- Grand Arch Keystones & Ornamentation -->
+    <circle cx="256" cy="68" r="14" fill="url(#royalGold)" filter="url(#divineGlow)"/>
+    <circle cx="256" cy="68" r="7" fill="#FFFFFF"/>
+
+    <!-- Open Filigree Gate Wings -->
+    <path d="M172 230 L215 250 L215 330 L172 330 Z" fill="none" stroke="url(#royalGold)" stroke-width="3" opacity="0.85"/>
+    <line x1="172" y1="280" x2="215" y2="290" stroke="url(#royalGold)" stroke-width="2" opacity="0.7"/>
+    <circle cx="193" cy="275" r="8" fill="none" stroke="url(#royalGold)" stroke-width="1.5" opacity="0.8"/>
+
+    <path d="M340 230 L297 250 L297 330 L340 330 Z" fill="none" stroke="url(#royalGold)" stroke-width="3" opacity="0.85"/>
+    <line x1="340" y1="280" x2="297" y2="290" stroke="url(#royalGold)" stroke-width="2" opacity="0.7"/>
+    <circle cx="319" cy="275" r="8" fill="none" stroke="url(#royalGold)" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- Gate Threshold Steps of Light -->
+    <polygon points="120,358 392,358 376,342 136,342" fill="url(#royalGold)" opacity="0.95"/>
+    <rect x="110" y="358" width="292" height="10" rx="3" fill="url(#pillarGold)"/>
+
+    <!-- Floating Crescent Moon & 8-Pointed Stars Above Paradise Gate -->
+    <path d="M256 26 C238 26 224 38 224 54 C224 67 233 78 246 81 C237 77 232 70 232 60 C232 47 242 36 256 36 C261 36 266 38 270 41 C266 32 261 26 256 26 Z" fill="url(#royalGold)" filter="url(#divineGlow)"/>
+
+    <g fill="url(#royalGold)">
+      <polygon points="105,115 109,122 116,126 109,130 105,137 101,130 94,126 101,122" filter="url(#divineGlow)"/>
+      <circle cx="105" cy="126" r="1.5" fill="#FFF"/>
+      <polygon points="407,115 411,122 418,126 411,130 407,137 403,130 396,126 403,122" filter="url(#divineGlow)"/>
+      <circle cx="407" cy="126" r="1.5" fill="#FFF"/>
+      <polygon points="256,12 258,16 262,18 258,20 256,24 254,20 250,18 254,16"/>
+    </g>
+
+    <!-- ==========================================
+         CALLIGRAPHIC TITLE: بَوَّابَةُ الجَنَّة
+         ========================================== -->
+    <rect x="76" y="382" width="360" height="78" rx="20" fill="#031E12" opacity="0.88" stroke="url(#royalGold)" stroke-width="1.5"/>
+
+    <text x="256" y="428" font-family="'Amiri', 'Traditional Arabic', serif" font-weight="bold" font-size="44" fill="url(#royalGold)" text-anchor="middle" letter-spacing="1">بَوَّابَةُ الجَنَّة</text>
+    <text x="256" y="450" font-family="'Cairo', sans-serif" font-weight="600" font-size="13" fill="#A7F3D0" text-anchor="middle" letter-spacing="2.5">طَرِيقُكَ إِلَى الفِرْدَوْسِ الأَعْلَى</text>
+  </g>
+</svg>
