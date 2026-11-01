@@ -459,3 +459,7 @@ const RawhContent = {
     }
   ]
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhContent = RawhContent;
+}

@@ -20,15 +20,19 @@ const RawhApp = {
     this.setupAboutAndPrivacy();
     this.registerServiceWorker();
 
-    // تشغيل الأنظمة الفرعية
-    if (window.RawhPlayer) RawhPlayer.init();
-    if (window.RawhPrayerTimes) RawhPrayerTimes.init();
-    if (window.RawhQibla) RawhQibla.init();
-    if (window.RawhGarden) RawhGarden.init();
-    if (window.RawhQuiz) RawhQuiz.init();
-    if (window.RawhQuran) RawhQuran.init();
-    if (window.RawhKidsStories) RawhKidsStories.init();
-    if (window.RawhMemoryGame) RawhMemoryGame.init();
+    // تشغيل الأنظمة الفرعية بأمان وموثوقية
+    try {
+      if (typeof RawhPlayer !== 'undefined' && RawhPlayer.init) RawhPlayer.init();
+      if (typeof RawhPrayerTimes !== 'undefined' && RawhPrayerTimes.init) RawhPrayerTimes.init();
+      if (typeof RawhQibla !== 'undefined' && RawhQibla.init) RawhQibla.init();
+      if (typeof RawhGarden !== 'undefined' && RawhGarden.init) RawhGarden.init();
+      if (typeof RawhQuiz !== 'undefined' && RawhQuiz.init) RawhQuiz.init();
+      if (typeof RawhQuran !== 'undefined' && RawhQuran.init) RawhQuran.init();
+      if (typeof RawhKidsStories !== 'undefined' && RawhKidsStories.init) RawhKidsStories.init();
+      if (typeof RawhMemoryGame !== 'undefined' && RawhMemoryGame.init) RawhMemoryGame.init();
+    } catch (e) {
+      console.warn('Subsystem init notification:', e);
+    }
   },
 
   setupNavigation() {
@@ -83,6 +87,20 @@ const RawhApp = {
 
     const headerTitle = document.getElementById('top-bar-title');
     if (headerTitle) headerTitle.innerText = titles[tabId] || 'بوابة الجنة';
+
+    // تنشيط شاشات الألعاب أو السور عند الانتقال لها
+    if (tabId === 'games' && typeof RawhMemoryGame !== 'undefined') {
+      if (!RawhMemoryGame.cards || RawhMemoryGame.cards.length === 0) RawhMemoryGame.startNewGame();
+    }
+    if (tabId === 'quran' && typeof RawhQuran !== 'undefined') {
+      RawhQuran.renderSurahList();
+    }
+    if (tabId === 'kids_stories' && typeof RawhKidsStories !== 'undefined') {
+      RawhKidsStories.renderKidsStoriesList();
+    }
+    if (tabId === 'home' && typeof RawhGarden !== 'undefined') {
+      RawhGarden.renderGarden();
+    }
   },
 
   setupDailyQuote() {
@@ -343,7 +361,15 @@ const RawhApp = {
   }
 };
 
-// تشغيل التطبيق بمجرد اكتمال تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
+if (typeof window !== 'undefined') {
+  window.RawhApp = RawhApp;
+}
+
+// تشغيل التطبيق بأمان فور جاهزية المستند
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    RawhApp.init();
+  });
+} else {
   RawhApp.init();
-});
+}

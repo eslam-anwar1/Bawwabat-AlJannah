@@ -193,3 +193,7 @@ const RawhMemoryGame = {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhMemoryGame = RawhMemoryGame;
+}

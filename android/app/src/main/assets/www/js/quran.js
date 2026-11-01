@@ -4,7 +4,7 @@
 
 const RawhQuran = {
   currentSurahNumber: 1,
-  selectedReciterId: 'husary_muallim', // المصحف المعلم كافتراضي لتحفيظ الأطفال
+  selectedReciterId: 'alafasy', // الشيخ مشاري العفاسي كافتراضي عالي الموثوقية
   repeatTarget: 3, // تكرار 3 مرات افتراضياً
   currentRepeatCount: 0,
   fontSize: 22,
@@ -248,8 +248,7 @@ const RawhQuran = {
 
   playSurahAudio(surahNumber) {
     const reciter = RawhQuranData.reciters.find(r => r.id === this.selectedReciterId) || RawhQuranData.reciters[0];
-    const padded = surahNumber.toString().padStart(3, '0');
-    const audioUrl = `${reciter.server}${padded}.mp3`;
+    const audioUrl = `${reciter.server}${surahNumber}.mp3`;
 
     this.currentRepeatCount = 0;
     this.quranAudio.src = audioUrl;
@@ -264,8 +263,19 @@ const RawhQuran = {
       this.isPlaying = true;
       this.updatePlayBtnDom(true);
     }).catch(err => {
-      console.warn('Audio play failed, fallback serene chime', err);
-      if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(`سورة ${surahNumber}`);
+      console.warn('Audio play failed, fallback serene audio', err);
+      // تجربة تشغيل الفاتحة المحلية إذا كانت السورة 1
+      if (surahNumber === 1) {
+        this.quranAudio.src = 'assets/audio/quran_fatihah.wav';
+        this.quranAudio.play().then(() => {
+          this.isPlaying = true;
+          this.updatePlayBtnDom(true);
+        }).catch(() => {
+          if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(`سورة ${surahNumber}`);
+        });
+      } else if (window.RawhPlayer) {
+        RawhPlayer.fallbackSyntheticPeaceAudio(`سورة ${surahNumber}`);
+      }
     });
   },
 
@@ -298,3 +308,7 @@ const RawhQuran = {
     if (label) label.innerText = `${this.fontSize}px`;
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhQuran = RawhQuran;
+}

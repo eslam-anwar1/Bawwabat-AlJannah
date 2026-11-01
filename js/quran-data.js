@@ -8,26 +8,26 @@ const RawhQuranData = {
     {
       id: "alafasy",
       name: "الشيخ مشاري راشد العفاسي",
-      style: "تلاوة عذبة وخاشعة",
-      server: "https://server8.mp3quran.net/afs/"
+      style: "تلاوة عذبة وخاشعة وممتازة للتحفيظ",
+      server: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/"
     },
     {
-      id: "husary_muallim",
-      name: "الشيخ محمود خليل الحصري (المصحف المعلم)",
-      style: "ترديد أطفال بطيء - مخصص ومثالي للتحفيظ",
-      server: "https://server13.mp3quran.net/husr/Teacher/"
+      id: "husary",
+      name: "الشيخ محمود خليل الحصري",
+      style: "ترتيل هادئ متقن - مخصص ومثالي للتحفيظ",
+      server: "https://cdn.islamic.network/quran/audio/128/ar.husary/"
     },
     {
       id: "minshawi",
       name: "الشيخ محمد صديق المنشاوي",
       style: "خشوع وسكينة القلوب",
-      server: "https://server10.mp3quran.net/minsh/"
+      server: "https://cdn.islamic.network/quran/audio/128/ar.minshawi/"
     },
     {
-      id: "abdulbasit",
-      name: "الشيخ عبد الباسط عبد الصمد",
-      style: "تجويد وصوت ملائكي أسطوري",
-      server: "https://server7.mp3quran.net/basit/"
+      id: "hudhaify",
+      name: "الشيخ علي عبد الرحمن الحذيفي",
+      style: "تلاوة واضحة هادئة ومتقنة",
+      server: "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/"
     }
   ],
 
@@ -247,3 +247,7 @@ const RawhQuranData = {
     }
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhQuranData = RawhQuranData;
+}

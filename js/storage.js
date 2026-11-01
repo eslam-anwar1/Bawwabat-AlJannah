@@ -174,3 +174,7 @@ const RawhStorage = {
     } catch (e) {}
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhStorage = RawhStorage;
+}

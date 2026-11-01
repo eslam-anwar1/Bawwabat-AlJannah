@@ -343,3 +343,7 @@ const RawhPlayer = {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhPlayer = RawhPlayer;
+}

@@ -153,3 +153,7 @@ const RawhQibla = {
   degToRad(d) { return (d * Math.PI) / 180.0; },
   radToDeg(r) { return (r * 180.0) / Math.PI; }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhQibla = RawhQibla;
+}

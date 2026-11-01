@@ -292,3 +292,7 @@ const RawhQuiz = {
     }
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhQuiz = RawhQuiz;
+}

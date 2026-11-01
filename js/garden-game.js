@@ -234,3 +234,7 @@ const RawhGarden = {
     }, 3500);
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhGarden = RawhGarden;
+}

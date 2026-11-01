@@ -303,3 +303,7 @@ const RawhPrayerTimes = {
     }, 60000); // تحديث كل دقيقة
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhPrayerTimes = RawhPrayerTimes;
+}

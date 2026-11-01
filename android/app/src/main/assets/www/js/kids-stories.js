@@ -267,6 +267,9 @@ const RawhKidsStories = {
     if (nextSceneBtn) {
       nextSceneBtn.addEventListener('click', () => this.stepScene(1));
     }
+    if (playNarrationBtn) {
+      playNarrationBtn.addEventListener('click', () => this.toggleNarration());
+    }
     // تبديل نمط العرض بين المسرح التفاعلي وبث الفيديو
     const tabStage = document.getElementById('tab-btn-interactive-stage');
     const tabVideo = document.getElementById('tab-btn-video-stream');
@@ -536,3 +539,7 @@ const RawhKidsStories = {
     }
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.RawhKidsStories = RawhKidsStories;
+}
