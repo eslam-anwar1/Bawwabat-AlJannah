@@ -44,9 +44,27 @@ const RawhQuran = {
     });
 
     this.quranAudio.addEventListener('error', () => {
-      console.warn('Quran audio stream error, fallback synth');
-      if (window.RawhPlayer) {
-        RawhPlayer.fallbackSyntheticPeaceAudio("تلاوة مباركة");
+      console.warn('Quran audio stream error, trying local authentic voice');
+      const localMap = {
+        1: 'assets/audio/quran_fatihah.mp3',
+        112: 'assets/audio/quran_ikhlas.mp3',
+        113: 'assets/audio/quran_falaq.mp3',
+        114: 'assets/audio/quran_nas.mp3',
+        108: 'assets/audio/quran_kawthar.mp3',
+        97: 'assets/audio/quran_qadr.mp3',
+        94: 'assets/audio/quran_sharh.mp3',
+        93: 'assets/audio/quran_duha.mp3'
+      };
+      const fallbackLocal = localMap[this.currentSurahNumber] || 'assets/audio/quran_fatihah.mp3';
+      if (this.quranAudio.src !== fallbackLocal) {
+        this.quranAudio.src = fallbackLocal;
+        this.quranAudio.play().then(() => {
+          this.isPlaying = true;
+          this.updatePlayBtnDom(true);
+        }).catch(() => {
+          this.isPlaying = false;
+          this.updatePlayBtnDom(false);
+        });
       }
     });
   },
@@ -278,7 +296,8 @@ const RawhQuran = {
 
   playSurahAudio(surahNumber) {
     const reciter = RawhQuranData.reciters.find(r => r.id === this.selectedReciterId) || RawhQuranData.reciters[0];
-    const audioUrl = `${reciter.server}${surahNumber}.mp3`;
+    const padNum = String(surahNumber).padStart(3, '0');
+    const audioUrl = `${reciter.server}${padNum}.mp3`;
 
     this.currentRepeatCount = 0;
     this.quranAudio.src = audioUrl;
@@ -308,13 +327,22 @@ const RawhQuran = {
             this.updatePlayBtnDom(true);
           }).catch(() => {});
         }
-        if (surahNumber === 1) {
-          this.quranAudio.src = 'assets/audio/quran_fatihah.wav';
-          this.quranAudio.play().then(() => {
-            this.isPlaying = true;
-            this.updatePlayBtnDom(true);
-          }).catch(() => {});
-        }
+        const localMap = {
+          1: 'assets/audio/quran_fatihah.mp3',
+          112: 'assets/audio/quran_ikhlas.mp3',
+          113: 'assets/audio/quran_falaq.mp3',
+          114: 'assets/audio/quran_nas.mp3',
+          108: 'assets/audio/quran_kawthar.mp3',
+          97: 'assets/audio/quran_qadr.mp3',
+          94: 'assets/audio/quran_sharh.mp3',
+          93: 'assets/audio/quran_duha.mp3'
+        };
+        const localSrc = localMap[surahNumber] || 'assets/audio/quran_fatihah.mp3';
+        this.quranAudio.src = localSrc;
+        this.quranAudio.play().then(() => {
+          this.isPlaying = true;
+          this.updatePlayBtnDom(true);
+        }).catch(() => {});
       });
     }
   },

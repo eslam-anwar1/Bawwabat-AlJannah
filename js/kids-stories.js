@@ -17,7 +17,7 @@ const RawhKidsStories = {
       title: "ريحانة الجنة: سر الشاب البار بأمه",
       subtitle: "حكاية ساحرة عن كيف فتحت دعوة الأم أبواب التوفيق والجنة لسعد",
       duration: "4 دقائق",
-      videoUrl: "https://www.youtube-nocookie.com/embed/gI8-v1r1N88",
+      videoUrl: "https://www.youtube.com/embed/7PqmsB5L7o0",
       cover: "assets/icons/app-icon.svg",
       scenes: [
         {
@@ -73,7 +73,7 @@ const RawhKidsStories = {
       title: "صلاتي نور قلبي: الفتى الشجاع وعمود الدين",
       subtitle: "كيف جعلت المحافظة على الصلوات الخمس قلب عمر قوياً لا يخاف شيئاً",
       duration: "5 دقائق",
-      videoUrl: "https://www.youtube-nocookie.com/embed/5F_P-jXyZkg",
+      videoUrl: "https://www.youtube.com/embed/uu6JiuBB8eA",
       cover: "assets/icons/app-icon.svg",
       scenes: [
         {
@@ -131,7 +131,7 @@ const RawhKidsStories = {
       title: "يوسف الصديق: قصة الصبر والعفو الجميل",
       subtitle: "رحلة الفتى الصابر من البئر المظلم إلى عرش مصر العظيم",
       duration: "6 دقائق",
-      videoUrl: "https://www.youtube-nocookie.com/embed/x9N-q_2nQe8",
+      videoUrl: "https://www.youtube.com/embed/z6cFKeI_aq0",
       cover: "assets/icons/app-icon.svg",
       scenes: [
         {
@@ -183,7 +183,7 @@ const RawhKidsStories = {
       title: "يونس عليه السلام: نداء التسبيح في بطن الحوت",
       subtitle: "كيف نجى نبي الله يونس من أظلم مكان بكلمة واحدة عظيمة",
       duration: "4 دقائق",
-      videoUrl: "https://www.youtube-nocookie.com/embed/0G_T8W1sK7E",
+      videoUrl: "https://www.youtube.com/embed/pvANQZfGyuM",
       cover: "assets/icons/app-icon.svg",
       scenes: [
         {
@@ -421,9 +421,35 @@ const RawhKidsStories = {
     const modal = document.getElementById('kids-video-modal');
     const titleEl = document.getElementById('kids-video-title');
     const iframe = document.getElementById('kids-video-iframe');
+    const directBtnBox = document.getElementById('theater-video-direct-btn');
 
     if (titleEl) titleEl.innerText = `مسرح بوابة الجنة: ${story.title}`;
-    if (iframe) iframe.src = story.videoUrl;
+    if (iframe) {
+      iframe.src = `${story.videoUrl}?rel=0&modestbranding=1&enablejsapi=1`;
+    }
+
+    if (directBtnBox) {
+      const directUrl = story.videoUrl.replace('/embed/', '/watch?v=');
+      directBtnBox.innerHTML = `
+        <a href="${directUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #DC2626, #B91C1C); color: #FFF; padding: 12px 24px; border-radius: 30px; font-size: 0.95rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); transition: transform 0.2s;">
+          <span style="font-size: 1.2rem;">▶</span>
+          <span>مشاهدة الفيديو على تطبيق يوتيوب مباشرة ↗</span>
+        </a>
+      `;
+    }
+
+    // تفعيل تبويب بث الفيديو المباشر كافتراضي
+    const tabStage = document.getElementById('tab-btn-interactive-stage');
+    const tabVideo = document.getElementById('tab-btn-video-stream');
+    const stageBox = document.getElementById('theater-stage-container');
+    const videoBox = document.getElementById('theater-video-container');
+
+    if (tabVideo && tabStage && stageBox && videoBox) {
+      tabVideo.classList.add('active');
+      tabStage.classList.remove('active');
+      videoBox.style.display = 'block';
+      stageBox.style.display = 'none';
+    }
 
     this.renderSceneVisual();
     modal.classList.add('active');
@@ -455,15 +481,17 @@ const RawhKidsStories = {
     if (descEl) descEl.innerText = scene.desc;
     if (badgeEl) badgeEl.innerText = `المشهد ${this.currentSceneIdx + 1} من ${this.currentStory.scenes.length}`;
 
-    // إضافة رابط المشاهدة الخارجية إن وجد
+    // إضافة زر المشاهدة المباشرة الموثوق
     const ytContainer = document.getElementById('theater-yt-link-box');
     if (ytContainer) {
-      const directUrl = this.currentStory.videoUrl.replace('/embed/', '/watch?v=').replace('youtube-nocookie.com', 'youtube.com');
+      const directUrl = this.currentStory.videoUrl.replace('/embed/', '/watch?v=');
       ytContainer.innerHTML = `
-        <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn-yt-external" style="display: inline-flex; align-items: center; gap: 6px; background: #DC2626; color: #FFF; padding: 7px 16px; border-radius: 20px; font-size: 0.8rem; text-decoration: none; font-weight: bold; margin-top: 10px; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);">
-          <span>▶</span>
-          <span>فتح الفيديو على يوتيوب ↗</span>
-        </a>
+        <div style="margin-top: 12px; text-align: center;">
+          <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn-yt-external" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #DC2626; color: #FFF; padding: 10px 20px; border-radius: 25px; font-size: 0.88rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35); transition: transform 0.2s;">
+            <span>▶</span>
+            <span>مشاهدة الفيديو كاملاً على يوتيوب ↗</span>
+          </a>
+        </div>
       `;
     }
   },

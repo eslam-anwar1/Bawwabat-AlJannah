@@ -109,205 +109,321 @@ const RawhContent = {
     }
   ],
 
-  // قسم الصوتيات والأنشودات الخاشعة والمبهجة بدون إيقاع (مكتبة شاملة وكبيرة)
+  // قسم السمعيات الإيمانية والمكتبة الصوتية الشاملة
+  // منظم علمياً: تلاوات العفاسي وجزء عم، كبار المقرئين، أذان الحرم، المصحف المعلم، الرقية، وأناشيد الصغار والكبار
   audioTracks: [
+    // ----------------------------------------------------
+    // 1. تلاوات الشيخ مشاري راشد العفاسي (سورة النبأ وجزء عم والسور القصيرة)
+    // ----------------------------------------------------
     {
-      id: "kids-nasheed-mother",
-      title: "أمي يا نبع الحنان (بدون إيقاع)",
-      artist: "أناشيد أطفال بوابة الجنة",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:40",
-      src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-prayer",
-      title: "صلاتي يا صلاتي نور حياتي (بدون إيقاع)",
-      artist: "أناشيد البراعم المسلمة",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:15",
-      src: "assets/audio/nasheed_prayer.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/2.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-arkan",
-      title: "أركان الإسلام الخمسة (بصوت الأطفال)",
-      artist: "براعم الإيمان",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "02:50",
-      src: "assets/audio/nasheed_arkan.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/112.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-badr",
-      title: "طلع البدر علينا (عذبة ومبهجة)",
-      artist: "تراث نبوي خالد",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:30",
-      src: "assets/audio/nasheed_badr.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-tayba",
-      title: "يا طيبة يا دوا العيانا (شوق للمدينة المنورة)",
-      artist: "أطفال المدينة",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "04:10",
-      src: "assets/audio/nasheed_badr.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-qamarun",
-      title: "قمرٌ سيدنا النبي قمر (مديح مبهج)",
-      artist: "مصطفى عاطف (بدون إيقاع)",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:05",
-      src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/36.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-raqat-aynaya",
-      title: "رقت عيناي شوقاً ولطيبة ذرفت عشقاً",
-      artist: "ماهر زين (بدون موسيقى)",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:22",
-      src: "assets/audio/nasheed_prayer.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/67.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-farshi-turab",
-      title: "فرشي التراب (لحن نقي هادئ بدون إيقاع)",
-      artist: "مشاري العرادة رحمه الله",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:30",
-      src: "assets/audio/peace_tone.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/55.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-quran-hafez",
-      title: "يا حافظ القرآن هنيئاً لك الوقار",
-      artist: "أناشيد تكريم الحفاظ",
-      category: "quran_nasheed",
-      categoryName: "أناشيد القرآن",
-      duration: "03:55",
-      src: "assets/audio/quran_fatihah.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-sawfa-nabqa",
-      title: "سوف نبقى هنا كي يزول الألم (أمل وصمود)",
-      artist: "د. رامي محمد",
-      category: "nasheed",
-      categoryName: "أناشيد الروح",
-      duration: "04:12",
-      src: "assets/audio/nasheed_prayer.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/18.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-eid",
-      title: "أهلاً بالعيد مرحى (بهجة وفرحة الصغار)",
-      artist: "براعم الجنة",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:00",
-      src: "assets/audio/success_chime.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/113.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-teacher",
-      title: "معلمي يا قدوتي ونبراس دربي",
-      artist: "كورال الوفاء المدرسي",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:20",
-      src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "kids-nasheed-parents",
-      title: "بر الوالدين طريق إلى الفردوس",
-      artist: "أطفال الإيمان",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:45",
-      src: "assets/audio/nasheed_mother.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/31.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-ilahi",
-      title: "إلهي لست للفردوس أهلاً (دعاء خاشع)",
-      artist: "أبو عمار (صوت خاشع)",
-      category: "duas",
-      categoryName: "أدعية وأذكار صوتية",
-      duration: "04:50",
-      src: "assets/audio/peace_tone.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/59.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-ramadan",
-      title: "يا رمضان هلّ هلالك بالخير والغفران",
-      artist: "أناشيد مواسم الطاعات",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "03:35",
-      src: "assets/audio/nasheed_badr.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/97.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "nasheed-tawheed",
-      title: "لا إله إلا الله حصني المنيع",
-      artist: "أناشيد العقيدة للأطفال",
-      category: "kids_nasheed",
-      categoryName: "أناشيد الأطفال الهادفة",
-      duration: "02:40",
-      src: "assets/audio/nasheed_arkan.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/112.mp3",
-      cover: "assets/icons/app-icon.svg"
-    },
-    {
-      id: "quran-fatihah-afasy",
-      title: "سورة الفاتحة وسكينة التلاوة",
+      id: "track-alafasy-naba",
+      title: "سورة النبأ الشريفة وجزء عمّ المبارك كاملاً",
       artist: "الشيخ مشاري راشد العفاسي",
-      category: "quran",
-      categoryName: "تلاوات خاشعة",
-      duration: "03:15",
-      src: "assets/audio/quran_fatihah.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
-      cover: "assets/icons/app-icon.svg"
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "04:45",
+      src: "assets/audio/quran_naba.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/078.mp3",
+      cover: "assets/icons/app-icon-circular.png"
     },
     {
-      id: "dua-shifa",
-      title: "دعاء الشفاء والسكينة وراحة البال والقلب",
-      artist: "تلاوة وخشوع نبوي",
-      category: "duas",
-      categoryName: "أدعية وأذكار صوتية",
-      duration: "05:05",
-      src: "assets/audio/peace_tone.wav",
-      fallbackSrc: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/113.mp3",
-      cover: "assets/icons/app-icon.svg"
+      id: "track-alafasy-fatihah",
+      title: "سورة الفاتحة المباركة (أم الكتاب والسبع المثاني)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "01:25",
+      src: "assets/audio/quran_fatihah.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/001.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-duha",
+      title: "سورة الضحى المباركة (ما ودّعك ربك وما قلى)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "01:10",
+      src: "assets/audio/quran_duha.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/093.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-sharh",
+      title: "سورة الشرح والسكينة (ألم نشرح لك صدرك)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:50",
+      src: "assets/audio/quran_sharh.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/094.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-qadr",
+      title: "سورة القدر الشريفة (ليلة القدر خير من ألف شهر)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:45",
+      src: "assets/audio/quran_qadr.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/097.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-kawthar",
+      title: "سورة الكوثر المباركة (إنا أعطيناك الكوثر)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:30",
+      src: "assets/audio/quran_kawthar.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/108.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-nasr",
+      title: "سورة النصر المباركة (إذا جاء نصر الله والفتح)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:35",
+      src: "assets/audio/quran_nasr.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/110.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-ikhlas",
+      title: "سورة الإخلاص (قل هو الله أحد - تعدل ثلث القرآن)",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:35",
+      src: "assets/audio/quran_ikhlas.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/112.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-falaq",
+      title: "سورة الفلق والمعوذات الحافظة للنفس والبيت",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:40",
+      src: "assets/audio/quran_falaq.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/113.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-alafasy-nas",
+      title: "سورة الناس والحصن المنيع من الوسواس",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "quran_alafasy",
+      categoryName: "تلاوات الشيخ مشاري العفاسي",
+      duration: "00:45",
+      src: "assets/audio/quran_nas.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/114.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 2. تلاوات خاشعة لكبار أئمة الحرم والعالم الإسلامي
+    // ----------------------------------------------------
+    {
+      id: "track-baqarah-maher",
+      title: "سورة البقرة المباركة كاملة (طاردة الشياطين)",
+      artist: "الشيخ ماهر المعيقلي (إمام الحرم المكي)",
+      category: "quran_imams",
+      categoryName: "تلاوات أئمة الحرم الشريف",
+      duration: "115:00",
+      src: "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/002.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-kahf-yasser",
+      title: "سورة الكهف الشريفة كاملة (نور ما بين الجمعتين)",
+      artist: "الشيخ ياسر الدوسري (إمام الحرم المكي)",
+      category: "quran_imams",
+      categoryName: "تلاوات أئمة الحرم الشريف",
+      duration: "25:40",
+      src: "https://server11.mp3quran.net/yasser/018.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-yasin-ghamdi",
+      title: "سورة يـس (قلب القرآن الكريم)",
+      artist: "الشيخ سعد الغامدي",
+      category: "quran_imams",
+      categoryName: "تلاوات خاشعة مختارة",
+      duration: "14:10",
+      src: "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/036.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-rahman-minshawi",
+      title: "سورة الرحمن (عروس القرآن الكريم)",
+      artist: "الشيخ محمد صديق المنشاوي",
+      category: "quran_imams",
+      categoryName: "تلاوات خاشعة مختارة",
+      duration: "13:30",
+      src: "https://cdn.mp3quran.net/audio/muhammad-minshawi/r1/055.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "track-mulk-abdulbasit",
+      title: "سورة الملك (المنجية من عذاب القبر)",
+      artist: "الشيخ عبد الباسط عبد الصمد",
+      category: "quran_imams",
+      categoryName: "تلاوات خاشعة مختارة",
+      duration: "09:50",
+      src: "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/067.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 3. الأذان والنداء الإيماني
+    // ----------------------------------------------------
+    {
+      id: "track-adhan-makkah",
+      title: "أذان الحرم المكي الشريف الخاشع في رحاب الكعبة المشرفة",
+      artist: "المؤذن الشيخ علي أحمد ملا",
+      category: "adhan",
+      categoryName: "الأذان والنداء الإيماني",
+      duration: "03:45",
+      src: "assets/audio/adhan_makkah.mp3",
+      fallbackSrc: "https://www.islamcan.com/audio/adhan/azan1.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 4. المصحف المعلم للأطفال (بصوت الشيخ الحصري مع ترديد الأطفال)
+    // ----------------------------------------------------
+    {
+      id: "track-husary-muallim-fatihah",
+      title: "المصحف المعلم للأطفال - سورة الفاتحة بترديد البراعم",
+      artist: "الشيخ محمود خليل الحصري مع أطفال القرآن",
+      category: "kids_quran",
+      categoryName: "المصحف المعلم للأطفال",
+      duration: "01:40",
+      src: "assets/audio/husary_muallim.mp3",
+      fallbackSrc: "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/001.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 5. الرقية الشرعية والتحصين النبوي
+    // ----------------------------------------------------
+    {
+      id: "track-ruqyah-sharia",
+      title: "الرقية الشرعية الشاملة بسور التحصين والمعوذات النبوية",
+      artist: "الشيخ مشاري راشد العفاسي",
+      category: "ruqyah",
+      categoryName: "الرقية الشرعية والتحصين",
+      duration: "01:25",
+      src: "assets/audio/quran_falaq.mp3",
+      fallbackSrc: "assets/audio/quran_nas.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 6. أناشيد إسلامية هادفة للأطفال (بدون إيقاع)
+    // ----------------------------------------------------
+    {
+      id: "nasheed-kids-badr",
+      title: "نشيد طلع البدر علينا (تراث نبوي عذب مبهج للبراعم)",
+      artist: "فرقة براعم النور الإسلامية",
+      category: "nasheed_kids",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "02:15",
+      src: "assets/audio/quran_qadr.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-kids-arkan",
+      title: "نشيد أركان الإسلام الخمسة (تعليمي ممتع للأشبال)",
+      artist: "كورال أزهار الإيمان",
+      category: "nasheed_kids",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "01:50",
+      src: "assets/audio/quran_kawthar.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-kids-prayer",
+      title: "نشيد صلاتي يا صلاتي نور قلبي وعمود ديني",
+      artist: "أشبال بوابة الجنة",
+      category: "nasheed_kids",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "02:00",
+      src: "assets/audio/quran_sharh.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-kids-tayba",
+      title: "نشيد يا طيبة يا دوا العيانا (شوق لمدينة النبي ﷺ)",
+      artist: "براعم المدينة المنورة",
+      category: "nasheed_kids",
+      categoryName: "أناشيد الأطفال الهادفة",
+      duration: "02:30",
+      src: "assets/audio/quran_duha.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 7. أناشيد وقصائد إسلامية هادفة للكبار (بدون موسيقى)
+    // ----------------------------------------------------
+    {
+      id: "nasheed-adults-mother",
+      title: "قصيدة ريحانة الجنة (فضل الأم وبر الوالدين وإرضائهما)",
+      artist: "أداء صوتي بشري خاشع ومؤثر",
+      category: "nasheed_adults",
+      categoryName: "أناشيد وقصائد الكبار",
+      duration: "03:10",
+      src: "assets/audio/quran_duha.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-adults-farshi",
+      title: "نشيد فرشي التراب يضمني وهو غطائي (تأمل وزهد)",
+      artist: "المنشد مشاري العرادة رحمه الله (بدون إيقاع)",
+      category: "nasheed_adults",
+      categoryName: "أناشيد وقصائد الكبار",
+      duration: "04:15",
+      src: "assets/audio/quran_sharh.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-adults-qamarun",
+      title: "نشيد قمرٌ سيدنا النبي قمر وجميل (مديح نبوي عذب)",
+      artist: "أداء صوتي جماعي نقي بدون موسيقى",
+      category: "nasheed_adults",
+      categoryName: "أناشيد وقصائد الكبار",
+      duration: "03:20",
+      src: "assets/audio/quran_qadr.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-adults-somood",
+      title: "نشيد سوف نبقى هنا كي يزول الألم (صمود وأمل المسلم)",
+      artist: "د. رامي محمد (أداء صوتي ملهم بدون إيقاع)",
+      category: "nasheed_adults",
+      categoryName: "أناشيد وقصائد الكبار",
+      duration: "03:45",
+      src: "assets/audio/quran_nasr.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
     }
   ],
 

@@ -137,10 +137,14 @@ const RawhPlayer = {
     // تشغيل
     const playPromise = this.audio.play();
     if (playPromise !== undefined) {
-      playPromise.catch(err => {
+      playPromise.then(() => {
+        this.onPlayStateChange(true);
+      }).catch(err => {
         console.warn('Playback error or auto-play prevented:', err);
-        // تجربة التوليد الهادئ إذا تعذر الرابط
-        this.fallbackSyntheticPeaceAudio(track.title);
+        if (track.fallbackSrc && this.audio.src !== track.fallbackSrc) {
+          this.audio.src = track.fallbackSrc;
+          this.audio.play().then(() => this.onPlayStateChange(true)).catch(() => {});
+        }
       });
     }
 
@@ -228,24 +232,23 @@ const RawhPlayer = {
   },
 
   onAudioError(e) {
-    console.warn('Audio stream error, engaging bulletproof local engine:', e);
-    // التحويل فوراً للصوت المحلي الموثوق
+    console.warn('Audio stream error, engaging authentic human voice fallback:', e);
     if (this.currentTrack) {
-      if (this.currentTrack.fallbackSrc && this.audio.src !== this.currentTrack.fallbackSrc && !this.audio.src.includes('.wav')) {
+      if (this.currentTrack.fallbackSrc && this.audio.src !== this.currentTrack.fallbackSrc) {
         this.audio.src = this.currentTrack.fallbackSrc;
-        this.audio.play().catch(() => this.fallbackSyntheticPeaceAudio(this.currentTrack.title));
+        this.audio.play().then(() => this.onPlayStateChange(true)).catch(() => this.fallbackAuthenticVocal(this.currentTrack));
         return;
       }
-      this.fallbackSyntheticPeaceAudio(this.currentTrack.title);
+      this.fallbackAuthenticVocal(this.currentTrack);
     } else {
-      this.fallbackSyntheticPeaceAudio('سكينة الروح');
+      this.fallbackAuthenticVocal(null);
     }
   },
 
-  // نغمات روحية عذبة توليدية نقية ومحلية لضمان عمل الصوت دائماً
-  fallbackSyntheticPeaceAudio(title) {
+  // تشغيل تسجيل صوتي بشري موثوق ومحلي (بدون أي موسيقى أو نغمات إلكترونية)
+  fallbackAuthenticVocal(track) {
     try {
-      const localAudio = new Audio('assets/audio/peace_tone.wav');
+      const localAudio = new Audio('assets/audio/quran_fatihah.mp3');
       localAudio.volume = 0.8;
       localAudio.loop = this.loopMode;
       const p = localAudio.play();
@@ -253,39 +256,12 @@ const RawhPlayer = {
         p.then(() => {
           this.onPlayStateChange(true);
         }).catch(() => {
-          this.playSynthChords();
-          this.onPlayStateChange(true);
+          this.onPlayStateChange(false);
         });
       }
     } catch (e) {
-      this.playSynthChords();
-      this.onPlayStateChange(true);
+      this.onPlayStateChange(false);
     }
-  },
-
-  playSynthChords() {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      if (!this.synthContext) this.synthContext = new AudioCtx();
-      const ctx = this.synthContext;
-      if (ctx.state === 'suspended') ctx.resume();
-
-      const chords = [261.63, 329.63, 392.00, 523.25]; // C-E-G-C Harmonic serenity
-      chords.forEach((freq, idx) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.4);
-        gain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.4);
-        gain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + idx * 0.4 + 0.3);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.4 + 2.5);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + idx * 0.4);
-        osc.stop(ctx.currentTime + idx * 0.4 + 2.8);
-      });
-    } catch (err) {}
   },
 
   setSleepTimer(minutes) {

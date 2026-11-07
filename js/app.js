@@ -78,7 +78,7 @@ const RawhApp = {
       home: 'بوابة الجنة',
       quran: 'القرآن الكريم والتحفيظ',
       kids_stories: 'قصص الأطفال المرئية',
-      audio: 'أناشيد وصوتيات الجنة',
+      audio: 'السمعيات الإيمانية والمكتبة الصوتية',
       dhikr: 'الأذكار والرقية',
       games: 'ألعاب وألغاز الجنة',
       tools: 'أدوات المسلم والمواقيت',
@@ -90,6 +90,7 @@ const RawhApp = {
 
     // تنشيط شاشات الألعاب أو السور عند الانتقال لها
     if (tabId === 'games') {
+      if (typeof RawhAyahPuzzle !== 'undefined') RawhAyahPuzzle.init();
       if (typeof RawhMemoryGame !== 'undefined') RawhMemoryGame.startNewGame();
       if (typeof RawhQuiz !== 'undefined') {
         RawhQuiz.renderQuestion();
@@ -189,8 +190,6 @@ const RawhApp = {
       };
 
       window.speechSynthesis.speak(utterance);
-    } else {
-      if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(text);
     }
   },
 
@@ -384,16 +383,26 @@ const RawhApp = {
     RawhStorage.addXP(15, 'قراءة قصة');
   },
 
-  // إعداد قائمة الصوتيات مع البحث الفوري
+  // إعداد قائمة السمعيات والأناشيد مع التصنيف العلمي والبحث الفوري
   setupAudioList() {
     const container = document.getElementById('audio-tracks-list');
     const searchInput = document.getElementById('audio-search-input');
+    const filterBar = document.getElementById('audio-filter-bar');
     if (!container) return;
 
-    const renderTracks = (filter = '') => {
+    let currentCategory = 'all';
+
+    const renderTracks = () => {
       let tracks = RawhContent.audioTracks || [];
-      if (filter) {
-        const query = filter.toLowerCase().trim();
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+      // تصفية حسب التصنيف العلمي
+      if (currentCategory && currentCategory !== 'all') {
+        tracks = tracks.filter(t => t.category === currentCategory);
+      }
+
+      // تصفية حسب البحث الفوري
+      if (query) {
         tracks = tracks.filter(t => 
           t.title.toLowerCase().includes(query) ||
           t.artist.toLowerCase().includes(query) ||
@@ -405,8 +414,8 @@ const RawhApp = {
         container.innerHTML = `
           <div style="text-align: center; padding: 30px; color: var(--text-muted); background: #FFF; border-radius: 12px; border: 1px dashed #CBD5E1;">
             <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
-            <p style="font-weight: bold;">لم نجد أي نشيد أو تلاوة تطابق "${filter}"</p>
-            <p style="font-size: 0.8rem; margin-top: 4px;">جرّب كتابة كلمة أخرى مثل "أمي" أو "الصلاة" أو "رمضان"</p>
+            <p style="font-weight: bold;">لم نجد أي مادة صوتية تطابق بحثك</p>
+            <p style="font-size: 0.8rem; margin-top: 4px;">جرّب اختيار تصنيف آخر من الأزرار بالأعلى أو كلمة بحث أخرى</p>
           </div>
         `;
         return;
@@ -440,10 +449,23 @@ const RawhApp = {
 
     renderTracks();
 
+    // ربط أزرار التصنيفات
+    if (filterBar && !filterBar.dataset.bound) {
+      filterBar.dataset.bound = 'true';
+      filterBar.querySelectorAll('.audio-filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBar.querySelectorAll('.audio-filter-chip').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.getAttribute('data-category') || 'all';
+          renderTracks();
+        });
+      });
+    }
+
     if (searchInput && !searchInput.dataset.bound) {
       searchInput.dataset.bound = 'true';
-      searchInput.addEventListener('input', (e) => {
-        renderTracks(e.target.value);
+      searchInput.addEventListener('input', () => {
+        renderTracks();
       });
     }
   },

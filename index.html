@@ -202,16 +202,28 @@
       </div>
     </section>
 
-    <!-- 4. شاشة الصوتيات والأناشيد المبهجة بدون إيقاع -->
+    <!-- 4. شاشة السمعيات الإيمانية والمكتبة الصوتية الشاملة -->
     <section class="app-screen" id="screen-audio">
-      <!-- شريط البحث في الأناشيد -->
-      <div style="margin-bottom: 14px;">
-        <input type="text" id="audio-search-input" placeholder="🔍 ابحث في الأناشيد والتلاوات (اسم النشيد، المنشد، الفئة...)" style="width: 100%; padding: 11px 16px; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); font-family: 'Cairo', sans-serif; font-size: 0.9rem; background: #FFF; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: border-color 0.2s;" />
+      <!-- شريط البحث في السمعيات والأناشيد -->
+      <div style="margin-bottom: 12px;">
+        <input type="text" id="audio-search-input" placeholder="🔍 ابحث في السمعيات والأناشيد (سورة النبأ، العفاسي، الأذان، طلع البدر...)" style="width: 100%; padding: 11px 16px; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); font-family: 'Cairo', sans-serif; font-size: 0.9rem; background: #FFF; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: border-color 0.2s;" />
+      </div>
+
+      <!-- أزرار التصنيف العلمي للسمعيات والأناشيد -->
+      <div class="audio-filter-scroll-bar" id="audio-filter-bar">
+        <button class="audio-filter-chip active" data-category="all">🌟 الكل (عرض شامل)</button>
+        <button class="audio-filter-chip" data-category="quran_alafasy">📖 تلاوات العفاسي (جزء عم)</button>
+        <button class="audio-filter-chip" data-category="quran_imams">🕌 أئمة الحرم الشريف</button>
+        <button class="audio-filter-chip" data-category="adhan">🕋 أذان الحرم المكي</button>
+        <button class="audio-filter-chip" data-category="kids_quran">👶 المصحف المعلم للأطفال</button>
+        <button class="audio-filter-chip" data-category="ruqyah">🌿 الرقية والتحصين</button>
+        <button class="audio-filter-chip" data-category="nasheed_kids">🎈 أناشيد الأطفال الهادفة</button>
+        <button class="audio-filter-chip" data-category="nasheed_adults">✨ أناشيد وقصائد الكبار</button>
       </div>
 
       <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px;">
-        <span style="font-weight: bold; color: #92400E; font-size: 0.9rem;">أناشيد وتلاوات نقية بدون إيقاع 🎶</span>
-        <p style="font-size: 0.78rem; color: #78350F; margin-top: 2px;">أناشيد مبهجة للأطفال عن الأم والصلاة، وتلاوات قرآنية خاشعة تبعث على السكينة.</p>
+        <span style="font-weight: bold; color: #92400E; font-size: 0.9rem;">🎙️ المكتبة الصوتية الإيمانية والأناشيد الهادفة</span>
+        <p style="font-size: 0.78rem; color: #78350F; margin-top: 2px;">تلاوات الشيخ مشاري العفاسي، أذان الحرم المكي الشريف، المصحف المعلم للبراعم، ورقية شرعية، إضافة إلى أناشيد هادفة بدون إيقاع.</p>
       </div>
 
       <div class="audio-tracks-list" id="audio-tracks-list">
@@ -256,6 +268,46 @@
 
     <!-- 6. شاشة الألعاب والألغاز الخرافية (الإدمان الإيجابي) -->
     <section class="app-screen" id="screen-games">
+      <!-- لعبة تركيب وترتيب الآيات والسور المباركة (الجديدة كلياً) -->
+      <div class="ayah-puzzle-card" id="ayah-puzzle-game-area">
+        <div class="puzzle-header-row">
+          <div class="puzzle-title-wrap">
+            <h3 id="puzzle-surah-title">🧩 رتّب آيات القرآن الكريم</h3>
+            <span class="puzzle-level-badge" id="puzzle-surah-badge">سورة الكوثر • 3 آيات</span>
+          </div>
+          <span id="puzzle-verse-progress" style="font-size: 0.82rem; font-weight: bold; color: #047857;">الآية 1 من 3</span>
+        </div>
+
+        <div class="puzzle-selector-box">
+          <label style="font-size: 0.82rem; font-weight: bold; color: #334155; display: block; margin-bottom: 5px;">اختر السورة الكريمة للتركيب والحفظ الممتع:</label>
+          <select class="puzzle-select" id="puzzle-level-select"></select>
+        </div>
+
+        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 10px; text-align: center;">انقر على الكلمات بالترتيب الصحيح لتركيب الآية الكريمة ونيل الحسنات:</p>
+
+        <!-- خانات ترتيب كلمات الآية -->
+        <div class="ayah-slots-container" id="puzzle-slots-container"></div>
+
+        <!-- بنك الكلمات المبعثرة -->
+        <div class="ayah-words-bank" id="puzzle-words-bank"></div>
+
+        <div class="puzzle-feedback-hint" id="puzzle-feedback-hint"></div>
+
+        <!-- لافتة الانتصار عند إتمام السورة -->
+        <div class="puzzle-victory-banner" id="puzzle-victory-banner" style="display: none;">
+          <h4 style="color: #064E3B; margin: 0 0 6px; font-size: 1.15rem;">مبارك يا بطل القرآن الكريم! 🎉🌟</h4>
+          <p style="font-size: 0.88rem; color: #047857; margin: 0 0 10px;">أتممت تركيب السورة المباركة بنجاح تام! +50 حسنة و+2 قطرات ماء لحديقة إيمانك 💧🌿</p>
+          <div class="puzzle-actions-row">
+            <button class="btn-game-action" id="btn-listen-puzzle-surah" style="background: #064E3B; color: #FFF;">استمع للتلاوة 🔊</button>
+            <button class="btn-game-action" id="btn-next-puzzle-level" style="background: var(--gold-gradient); color: #062215;">السورة التالية ⬅️</button>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+          <button class="btn-reset-tasbeeh" id="btn-restart-puzzle" style="font-size: 0.78rem; padding: 4px 12px; background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1;">إعادة السورة 🔄</button>
+        </div>
+      </div>
+
       <!-- لعبة بطاقات الجنة السحرية (Memory Match Game) -->
       <div class="memory-game-card">
         <div class="game-card-header">
@@ -413,16 +465,39 @@
     <!-- 8. شاشة حول التطبيق والتوثيق الحصري الصارم -->
     <section class="app-screen" id="screen-about">
       <div class="about-hero-card">
-        <img src="./assets/icons/app-icon.svg" alt="بوابة الجنة" class="about-app-logo">
+        <img src="./assets/icons/app-icon-circular.png" alt="بوابة الجنة" class="about-app-logo" style="border-radius: 50%; box-shadow: 0 6px 20px rgba(0,0,0,0.15); border: 2px solid #D4AF37;">
         <h2 class="about-title">تطبيق بوابة الجنة</h2>
-        <div class="about-version">الإصدار 2.0.0 الماسي (النسخة المتكاملة للمتاجر)</div>
+        <div class="about-version">الإصدار 3.0.0 الماسي (النسخة الذهبية المعتمدة للمتاجر)</div>
 
-        <!-- التوثيق الرسمي الصارم والحصري كما طلب المستخدم نصاً دون أي تعديل -->
-        <div class="official-credits-banner">
-          <div class="credits-badge-label">التوثيق والحقوق الحصرية</div>
-          <p class="official-statement-text">
-            تم عمل وتطوير هذا التطبيق بواسطة <span class="gold-highlight">المهندسة إسلام أنور الفجم</span>
+        <!-- إهداء مؤثر وخالد إلى روح الشهيد والعائلة الكريمة -->
+        <div class="memorial-dedication-card">
+          <div class="memorial-dedication-header">
+            <span>🕊️</span>
+            <span>إهداء خالد إلى روح طاهرة</span>
+            <span>🕊️</span>
+          </div>
+          <div class="memorial-dedication-text">
+            "إهداء إلى روح أخي الشهيد شادي الفجم وإلى أمي وأبي وعائلتي الكريمة"
+          </div>
+          <div class="memorial-dedication-prayer">
+            اللهم اجعل هذا العمل صدقة جارية ونوراً في قبره، واجزه خير الجزاء واجمعه مع النبيين والصديقين والشهداء في الفردوس الأعلى، واحفظ والديّ وأهلي بحفظك الجميل.
+          </div>
+        </div>
+
+        <!-- التوثيق الرسمي الثابت والمعتمد -->
+        <div class="official-author-badge">
+          <div style="font-size: 0.8rem; font-weight: bold; color: #92400E; margin-bottom: 4px;">التوثيق البرمجي والحقوق الحصرية المعتمدة</div>
+          <p class="official-author-text">
+            تم تطوير هذا التطبيق بواسطة <span class="official-author-name">المهندسة إسلام أنور الفجم</span>
           </p>
+        </div>
+
+        <!-- زر التواصل المهني المباشر عبر LinkedIn -->
+        <div style="text-align: center; margin: 12px 0 16px;">
+          <a href="https://www.linkedin.com/in/eslam-alfajem" target="_blank" rel="noopener noreferrer" class="btn-linkedin-profile">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            <span>تواصل مع المهندسة إسلام أنور الفجم عبر LinkedIn ↗</span>
+          </a>
         </div>
 
         <p style="font-size: 0.9rem; line-height: 1.7; color: var(--text-dark); margin: 16px 0;">
@@ -608,12 +683,12 @@
     <div style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 16px 16px calc(20px + var(--safe-bottom));">
       <!-- أزرار تبديل نمط العرض -->
       <div class="theater-mode-tabs">
-        <button class="theater-tab-btn active" id="tab-btn-interactive-stage">🎬 مسرح المشاهد التفاعلي</button>
-        <button class="theater-tab-btn" id="tab-btn-video-stream">📺 بث الفيديو المباشر</button>
+        <button class="theater-tab-btn active" id="tab-btn-video-stream">📺 بث الفيديو المباشر</button>
+        <button class="theater-tab-btn" id="tab-btn-interactive-stage">🎬 مسرح المشاهد التفاعلي</button>
       </div>
 
       <!-- 1. بطاقة المسرح الكرتوني التفاعلي (جاهزة 100% وتعمل دون انقطاع) -->
-      <div class="interactive-theater-card" id="theater-stage-container">
+      <div class="interactive-theater-card" id="theater-stage-container" style="display: none;">
         <div class="theater-scene-badge" id="theater-scene-badge">المشهد 1 من 4</div>
         <div class="theater-scene-stage" id="theater-scene-stage">
           <div class="scene-anim-char pop-in">👦🧕</div>
@@ -633,8 +708,11 @@
       </div>
 
       <!-- 2. حاوية بث الفيديو المباشر -->
-      <div class="kids-video-frame-container" id="theater-video-container" style="display: none; width: 100%; max-width: 520px;">
-        <iframe id="kids-video-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+      <div id="theater-video-container" style="display: block; width: 100%; max-width: 520px;">
+        <div class="kids-video-frame-container" style="margin-top: 0;">
+          <iframe id="kids-video-iframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+        </div>
+        <div id="theater-video-direct-btn" style="margin-top: 14px; text-align: center;"></div>
       </div>
 
       <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 14px; text-align: center;">
@@ -661,7 +739,7 @@
     </button>
     <button class="bottom-nav-item" data-tab="audio">
       <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-      <span>الأناشيد</span>
+      <span>السمعيات</span>
     </button>
     <button class="bottom-nav-item" data-tab="dhikr">
       <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
@@ -677,6 +755,13 @@
     </button>
   </nav>
 
+  <!-- التذييل الرسمي والإهداء العام -->
+  <footer class="app-global-footer">
+    <strong>بوابة الجنة (طريقك إلى الفردوس الأعلى)</strong><br>
+    تم تطوير هذا التطبيق بواسطة <strong>المهندسة إسلام أنور الفجم</strong><br>
+    <span style="font-size: 0.74rem; color: #94A3B8;">إهداء إلى روح أخي الشهيد شادي الفجم وإلى أمي وأبي وعائلتي الكريمة</span>
+  </footer>
+
   <!-- إشعار Toast العائم -->
   <div class="app-toast" id="app-toast"></div>
 
@@ -690,6 +775,7 @@
   <script src="./js/garden-game.js"></script>
   <script src="./js/quiz-game.js"></script>
   <script src="./js/memory-game.js"></script>
+  <script src="./js/ayah-puzzle.js"></script>
   <script src="./js/kids-stories.js"></script>
   <script src="./js/quran.js"></script>
   <script src="./js/app.js"></script>

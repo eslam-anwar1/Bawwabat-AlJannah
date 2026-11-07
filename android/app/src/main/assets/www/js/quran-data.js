@@ -9,25 +9,37 @@ const RawhQuranData = {
       id: "alafasy",
       name: "الشيخ مشاري راشد العفاسي",
       style: "تلاوة عذبة وخاشعة وممتازة للتحفيظ",
-      server: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/"
+      server: "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/"
     },
     {
       id: "husary",
       name: "الشيخ محمود خليل الحصري",
       style: "ترتيل هادئ متقن - مخصص ومثالي للتحفيظ",
-      server: "https://cdn.islamic.network/quran/audio/128/ar.husary/"
+      server: "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/"
     },
     {
       id: "minshawi",
       name: "الشيخ محمد صديق المنشاوي",
       style: "خشوع وسكينة القلوب",
-      server: "https://cdn.islamic.network/quran/audio/128/ar.minshawi/"
+      server: "https://cdn.mp3quran.net/audio/muhammad-minshawi/r1/"
     },
     {
-      id: "hudhaify",
-      name: "الشيخ علي عبد الرحمن الحذيفي",
-      style: "تلاوة واضحة هادئة ومتقنة",
-      server: "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/"
+      id: "abdulbasit",
+      name: "الشيخ عبد الباسط عبد الصمد",
+      style: "صوت ذهبي وتجويد أسطوري خاشع",
+      server: "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/"
+    },
+    {
+      id: "maher",
+      name: "الشيخ ماهر المعيقلي",
+      style: "تلاوة خاشعة مؤثرة من الحرم المكي",
+      server: "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/"
+    },
+    {
+      id: "ghamdi",
+      name: "الشيخ سعد الغامدي",
+      style: "تلاوة هادئة ووقورة ترتاح لها النفوس",
+      server: "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/"
     }
   ],
 
