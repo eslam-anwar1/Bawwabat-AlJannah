@@ -30,6 +30,8 @@ const RawhApp = {
       if (typeof RawhQuran !== 'undefined' && RawhQuran.init) RawhQuran.init();
       if (typeof RawhKidsStories !== 'undefined' && RawhKidsStories.init) RawhKidsStories.init();
       if (typeof RawhMemoryGame !== 'undefined' && RawhMemoryGame.init) RawhMemoryGame.init();
+      if (typeof RawhDailyFeed !== 'undefined' && RawhDailyFeed.init) RawhDailyFeed.init();
+      if (typeof RawhProphetsQuest !== 'undefined' && RawhProphetsQuest.init) RawhProphetsQuest.init();
     } catch (e) {
       console.warn('Subsystem init notification:', e);
     }
@@ -90,6 +92,7 @@ const RawhApp = {
 
     // تنشيط شاشات الألعاب أو السور عند الانتقال لها
     if (tabId === 'games') {
+      if (typeof RawhProphetsQuest !== 'undefined') RawhProphetsQuest.renderGame();
       if (typeof RawhAyahPuzzle !== 'undefined') RawhAyahPuzzle.init();
       if (typeof RawhMemoryGame !== 'undefined') RawhMemoryGame.startNewGame();
       if (typeof RawhQuiz !== 'undefined') {
@@ -104,8 +107,9 @@ const RawhApp = {
     if (tabId === 'kids_stories' && typeof RawhKidsStories !== 'undefined') {
       RawhKidsStories.renderKidsStoriesList();
     }
-    if (tabId === 'home' && typeof RawhGarden !== 'undefined') {
-      RawhGarden.renderGarden();
+    if (tabId === 'home') {
+      if (typeof RawhDailyFeed !== 'undefined') RawhDailyFeed.renderDailyFeed();
+      if (typeof RawhGarden !== 'undefined') RawhGarden.renderGarden();
     }
     if (tabId === 'audio') {
       this.setupAudioList();
@@ -200,24 +204,60 @@ const RawhApp = {
     const currentCat = RawhContent.dhikrCategories.find(c => c.id === this.activeDhikrCategory);
     if (!currentCat) return;
 
-    container.innerHTML = currentCat.items.map(item => `
-      <div class="dhikr-card" id="dhikr-card-${item.id}">
-        <p class="dhikr-text">${item.text}</p>
-        <div class="dhikr-reward-tag">${item.reward}</div>
-        <div class="dhikr-actions-row">
-          <button class="dhikr-sound-btn" data-text="${encodeURIComponent(item.text)}" title="استماع للذكر مسموعاً">
-            <span>🔊</span>
-            <span>استمع</span>
-          </button>
-          <div class="dhikr-counter-action">
-            <button class="dhikr-press-btn" data-id="${item.id}" data-max="${item.count}" data-current="${item.count}">
-              <span class="count-num">${item.count}</span>
-              <span class="count-sub">اضغط للتكرار</span>
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    // إضافة شريط تحكم وإعادة الضبط
+    let html = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+        <span style="font-size: 0.85rem; font-weight: bold; color: var(--primary-emerald);">
+          ${currentCat.name} (${currentCat.items.length} أذكار مباركة)
+        </span>
+        <button id="btn-reset-current-dhikr" style="background: rgba(16, 185, 129, 0.12); color: var(--primary-emerald); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 4px 10px; font-size: 0.76rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+          <span>🔄</span>
+          <span>إعادة ضبط العدادات</span>
+        </button>
+      </div>
+    `;
+
+    html += currentCat.items.map(item => {
+      const storageKey = `rawh_dhikr_p_${todayKey}_${item.id}`;
+      const savedCount = localStorage.getItem(storageKey);
+      const current = savedCount !== null ? parseInt(savedCount) : item.count;
+      const isDone = current === 0;
+
+      return `
+        <div class="dhikr-card" id="dhikr-card-${item.id}">
+          <p class="dhikr-text">${item.text}</p>
+          <div class="dhikr-reward-tag">${item.reward}</div>
+          <div class="dhikr-actions-row">
+            <button class="dhikr-sound-btn" data-text="${encodeURIComponent(item.text)}" title="استماع للذكر مسموعاً">
+              <span>🔊</span>
+              <span>استمع</span>
             </button>
+            <div class="dhikr-counter-action">
+              <button class="dhikr-press-btn ${isDone ? 'completed' : ''}" data-id="${item.id}" data-max="${item.count}" data-current="${current}">
+                <span class="count-num">${isDone ? '✓' : current}</span>
+                <span class="count-sub">${isDone ? 'تم بحمد الله' : 'اضغط للتكرار'}</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
+
+    container.innerHTML = html;
+
+    // زر إعادة ضبط أذكار القسم
+    const resetCatBtn = document.getElementById('btn-reset-current-dhikr');
+    if (resetCatBtn) {
+      resetCatBtn.addEventListener('click', () => {
+        currentCat.items.forEach(item => {
+          localStorage.removeItem(`rawh_dhikr_p_${todayKey}_${item.id}`);
+        });
+        this.renderDhikrItems();
+        if (this.showToast) this.showToast('تمت إعادة ضبط عدادات الأذكار للبدء من جديد ✨', 'success');
+      });
+    }
 
     // تفعيل الاستماع الصوتي لكل ذكر
     container.querySelectorAll('.dhikr-sound-btn').forEach(btn => {
@@ -228,27 +268,39 @@ const RawhApp = {
       });
     });
 
-    // تفعيل التفاعل مع كل ذكر
+    // تفعيل التفاعل مع كل ذكر وحفظ التقدم محلياً (Offline Local Persistence + Haptic)
     container.querySelectorAll('.dhikr-press-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         let current = parseInt(btn.getAttribute('data-current'));
+        const itemId = btn.getAttribute('data-id');
+
         if (current > 0) {
           current--;
           btn.setAttribute('data-current', current);
           btn.querySelector('.count-num').innerText = current;
 
-          // اهتزاز لمسي لطيف
-          if (navigator.vibrate) navigator.vibrate(25);
+          // حفظ التقدم محلياً فوراً
+          localStorage.setItem(`rawh_dhikr_p_${todayKey}_${itemId}`, current);
+
+          // اهتزاز لمسي ذكي (Haptic Feedback)
+          if (navigator.vibrate) navigator.vibrate(35);
 
           if (current === 0) {
             btn.classList.add('completed');
             btn.querySelector('.count-num').innerText = '✓';
             btn.querySelector('.count-sub').innerText = 'تم بحمد الله';
-            RawhGarden.playWaterSound();
-            RawhStorage.addXP(10, 'إتمام ذكر');
-            const data = RawhStorage.getGardenData();
-            data.waterDrops = (data.waterDrops || 0) + 1;
-            RawhStorage.saveGardenData(data);
+            
+            // اهتزاز تأكيد الإتمام
+            if (navigator.vibrate) navigator.vibrate([40, 30, 70]);
+
+            if (window.RawhGarden) {
+              RawhGarden.playWaterSound();
+              RawhStorage.addXP(10, 'إتمام ذكر');
+              const data = RawhStorage.getGardenData();
+              data.waterDrops = (data.waterDrops || 0) + 1;
+              RawhStorage.saveGardenData(data);
+              RawhGarden.renderGarden();
+            }
           }
         }
       });

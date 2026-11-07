@@ -53,6 +53,9 @@
         <div class="quote-source" id="daily-quote-source">سورة الرعد: 28</div>
       </div>
 
+      <!-- نظام التحديث اليومي التلقائي (Dynamic Daily Content Feed) -->
+      <div id="dynamic-daily-feed-container"></div>
+
       <!-- حديقة الفردوس الافتراضية (نظام الجذب الذكي والإدمان الإيجابي) -->
       <div class="garden-hero-card">
         <div class="garden-stats-bar">
@@ -167,6 +170,13 @@
             <span class="prayer-time-val" id="time-isha">07:35 م</span>
           </div>
         </div>
+
+        <div style="text-align: center; margin-top: 14px;">
+          <button class="btn-play-makkah-adhan" style="width: 100%; justify-content: center; padding: 10px 16px;">
+            <span>🕋</span>
+            <span>استمع لأذان الحرم المكي الشريف الآن (الشيخ علي أحمد ملا)</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -219,6 +229,7 @@
         <button class="audio-filter-chip" data-category="ruqyah">🌿 الرقية والتحصين</button>
         <button class="audio-filter-chip" data-category="nasheed_kids">🎈 أناشيد الأطفال الهادفة</button>
         <button class="audio-filter-chip" data-category="nasheed_adults">✨ أناشيد وقصائد الكبار</button>
+        <button class="audio-filter-chip" data-category="nasheed_rhythm">🥁 أناشيد إسلامية بإيقاع</button>
       </div>
 
       <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px;">
@@ -268,6 +279,9 @@
 
     <!-- 6. شاشة الألعاب والألغاز الخرافية (الإدمان الإيجابي) -->
     <section class="app-screen" id="screen-games">
+      <!-- لعبة ومسابقات قصص الأنبياء الكرام (Prophets Quest) -->
+      <div id="prophets-quest-container"></div>
+
       <!-- لعبة تركيب وترتيب الآيات والسور المباركة (الجديدة كلياً) -->
       <div class="ayah-puzzle-card" id="ayah-puzzle-game-area">
         <div class="puzzle-header-row">
@@ -427,6 +441,11 @@
             <input type="checkbox" id="notif-isha" class="prayer-notif-switch" checked>
           </label>
         </div>
+
+        <button class="btn-play-makkah-adhan" style="width: 100%; justify-content: center; padding: 12px; margin-top: 14px; font-size: 0.95rem;">
+          <span>🕋</span>
+          <span>استمع لأذان الحرم المكي الشريف الآن (الشيخ علي أحمد ملا)</span>
+        </button>
       </div>
 
       <!-- بوصلة القبلة التفاعلية الحية -->
@@ -609,7 +628,10 @@
         <div class="mushaf-header-title" id="mushaf-surah-title">سُورَةُ الفَاتِحَة</div>
         <div class="mushaf-header-sub" id="mushaf-surah-meta">مكية • 7 آيات</div>
       </div>
-      <div style="display: flex; gap: 6px;">
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <button id="btn-toggle-tafsir" class="btn-tafsir-toggle">
+          <span>💡</span> <span>التفسير الميسر</span>
+        </button>
         <button id="btn-quran-font-plus" style="background: rgba(255,255,255,0.15); border: none; color: #FFF; width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer;">A+</button>
         <button id="btn-quran-font-minus" style="background: rgba(255,255,255,0.15); border: none; color: #FFF; width: 34px; height: 34px; border-radius: 8px; font-weight: bold; cursor: pointer;">A-</button>
       </div>
@@ -776,6 +798,8 @@
   <script src="./js/quiz-game.js"></script>
   <script src="./js/memory-game.js"></script>
   <script src="./js/ayah-puzzle.js"></script>
+  <script src="./js/prophets-quest.js"></script>
+  <script src="./js/daily-feed.js"></script>
   <script src="./js/kids-stories.js"></script>
   <script src="./js/quran.js"></script>
   <script src="./js/app.js"></script>

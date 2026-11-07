@@ -132,6 +132,7 @@ const RawhPlayer = {
     this.audio.loop = this.loopMode;
 
     this.updateDomTrackInfo(track);
+    this.updateMediaSession(track);
     this.showMiniPlayer();
 
     // تشغيل
@@ -213,6 +214,59 @@ const RawhPlayer = {
 
     const currentTimeEl = document.getElementById('player-current-time');
     if (currentTimeEl) currentTimeEl.innerText = this.formatTime(this.audio.currentTime);
+
+    // مزامنة حالة التحكم بالخلفية وشاشة القفل (Background Media Session)
+    if ('mediaSession' in navigator && this.audio.duration && !isNaN(this.audio.duration)) {
+      try {
+        navigator.mediaSession.setPositionState({
+          duration: this.audio.duration,
+          playbackRate: this.audio.playbackRate || 1.0,
+          position: Math.min(this.audio.currentTime, this.audio.duration)
+        });
+      } catch (e) {}
+    }
+  },
+
+  updateMediaSession(track) {
+    if (!('mediaSession' in navigator) || !track) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: track.title,
+        artist: track.artist || 'بوابة الجنة',
+        album: track.categoryName || 'بوابة الجنة - السمعيات الإيمانية',
+        artwork: [
+          { src: 'assets/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'assets/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'assets/icons/app-icon-circular.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+
+      navigator.mediaSession.setActionHandler('play', () => {
+        this.audio.play();
+        this.onPlayStateChange(true);
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        this.audio.pause();
+        this.onPlayStateChange(false);
+      });
+      navigator.mediaSession.setActionHandler('previoustrack', () => this.playPrevious());
+      navigator.mediaSession.setActionHandler('nexttrack', () => this.playNext());
+      navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+        const skipTime = details.seekOffset || 10;
+        this.audio.currentTime = Math.max(this.audio.currentTime - skipTime, 0);
+      });
+      navigator.mediaSession.setActionHandler('seekforward', (details) => {
+        const skipTime = details.seekOffset || 10;
+        this.audio.currentTime = Math.min(this.audio.currentTime + skipTime, this.audio.duration || 0);
+      });
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (details.seekTime !== undefined && this.audio.duration) {
+          this.audio.currentTime = details.seekTime;
+        }
+      });
+    } catch (e) {
+      console.warn('MediaSession handler setup note:', e);
+    }
   },
 
   onMetadataLoaded() {

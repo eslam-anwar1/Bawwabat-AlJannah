@@ -10,6 +10,7 @@ const RawhQuran = {
   fontSize: 22,
   quranAudio: null,
   isPlaying: false,
+  isTafsirActive: false,
 
   init() {
     this.quranAudio = new Audio();
@@ -148,6 +149,17 @@ const RawhQuran = {
         this.isPlaying = false;
       });
     }
+
+    // زر التفسير الميسر
+    const tafsirBtn = document.getElementById('btn-toggle-tafsir');
+    if (tafsirBtn) {
+      tafsirBtn.addEventListener('click', () => {
+        this.isTafsirActive = !this.isTafsirActive;
+        tafsirBtn.classList.toggle('active', this.isTafsirActive);
+        tafsirBtn.innerHTML = this.isTafsirActive ? '<span>📖</span> <span>إخفاء التفسير</span>' : '<span>💡</span> <span>التفسير الميسر</span>';
+        this.openSurahReader(this.currentSurahNumber, false);
+      });
+    }
   },
 
   renderSurahList(filterQuery = '') {
@@ -229,13 +241,7 @@ const RawhQuran = {
     const storedText = RawhQuranData.surahTexts[surahNumber];
     if (storedText) {
       if (basmalahBox) basmalahBox.style.display = storedText.bismillah ? 'block' : 'none';
-      if (contentBox) {
-        contentBox.innerHTML = storedText.ayahs.map(a => `
-          <span class="ayah-segment" data-ayah="${a.num}">
-            ${a.text} <span class="ayah-end-icon">۝${a.num}</span>
-          </span>
-        `).join(' ');
-      }
+      this.renderAyahsBox(contentBox, storedText.ayahs, surahNumber);
     } else {
       // تحميل الآيات مباشرة من واجهة القرآن السحابية
       if (basmalahBox) basmalahBox.style.display = surahNumber !== 9 ? 'block' : 'none';
@@ -261,11 +267,7 @@ const RawhQuran = {
                 bismillah: surahNumber !== 9,
                 ayahs: ayahs
               };
-              contentBox.innerHTML = ayahs.map(a => `
-                <span class="ayah-segment" data-ayah="${a.num}">
-                  ${a.text} <span class="ayah-end-icon">۝${a.num}</span>
-                </span>
-              `).join(' ');
+              this.renderAyahsBox(contentBox, ayahs, surahNumber);
             }
           })
           .catch(err => {
@@ -294,13 +296,44 @@ const RawhQuran = {
     }
   },
 
+  renderAyahsBox(contentBox, ayahs, surahNumber) {
+    if (!contentBox || !ayahs) return;
+    const tafsirMap = (RawhQuranData.tafsir && RawhQuranData.tafsir[surahNumber]) || {};
+
+    if (this.isTafsirActive) {
+      contentBox.innerHTML = ayahs.map(a => `
+        <div class="mushaf-ayah-tafsir-card">
+          <div class="ayah-arabic-line">
+            <span class="ayah-segment" data-ayah="${a.num}">
+              ${a.text} <span class="ayah-end-icon">۝${a.num}</span>
+            </span>
+          </div>
+          <div class="ayah-tafsir-line">
+            <span class="tafsir-tag-badge">💡 التفسير الميسر:</span>
+            <span>${tafsirMap[a.num] || 'تفسير ميسر مستفاد من معاني الآية الكريمة.'}</span>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      contentBox.innerHTML = ayahs.map(a => `
+        <span class="ayah-segment" data-ayah="${a.num}">
+          ${a.text} <span class="ayah-end-icon">۝${a.num}</span>
+        </span>
+      `).join(' ');
+    }
+  },
+
   playSurahAudio(surahNumber) {
     const reciter = RawhQuranData.reciters.find(r => r.id === this.selectedReciterId) || RawhQuranData.reciters[0];
+    const surahMeta = RawhQuranData.surahs.find(s => s.number === surahNumber);
     const padNum = String(surahNumber).padStart(3, '0');
     const audioUrl = `${reciter.server}${padNum}.mp3`;
 
     this.currentRepeatCount = 0;
     this.quranAudio.src = audioUrl;
+
+    // تحديث تحكم الخلفية وشاشة القفل (Background MediaSession)
+    this.updateQuranMediaSession(surahMeta, reciter);
 
     const nativeAudio = document.getElementById('quran-html5-audio');
     if (nativeAudio) {
@@ -374,6 +407,50 @@ const RawhQuran = {
     if (box) box.style.fontSize = `${this.fontSize}px`;
     const label = document.getElementById('quran-font-size-label');
     if (label) label.innerText = `${this.fontSize}px`;
+  },
+
+  updateQuranMediaSession(surahMeta, reciter) {
+    if (!('mediaSession' in navigator) || !surahMeta) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `سورة ${surahMeta.name} المباركة`,
+        artist: reciter ? reciter.name : 'الشيخ مشاري راشد العفاسي',
+        album: 'المصحف الشريف - بوابة الجنة',
+        artwork: [
+          { src: 'assets/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'assets/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'assets/icons/app-icon-circular.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+
+      navigator.mediaSession.setActionHandler('play', () => {
+        this.quranAudio.play();
+        this.isPlaying = true;
+        this.updatePlayBtnDom(true);
+      });
+      navigator.mediaSession.setActionHandler('pause', () => {
+        this.quranAudio.pause();
+        this.isPlaying = false;
+        this.updatePlayBtnDom(false);
+      });
+      navigator.mediaSession.setActionHandler('previoustrack', () => {
+        if (this.currentSurahNumber > 1) {
+          this.openSurahReader(this.currentSurahNumber - 1, true);
+        }
+      });
+      navigator.mediaSession.setActionHandler('nexttrack', () => {
+        if (this.currentSurahNumber < 114) {
+          this.openSurahReader(this.currentSurahNumber + 1, true);
+        }
+      });
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (details.seekTime !== undefined && this.quranAudio.duration) {
+          this.quranAudio.currentTime = details.seekTime;
+        }
+      });
+    } catch (e) {
+      console.warn('Quran MediaSession setup note:', e);
+    }
   }
 };
 

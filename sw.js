@@ -17,6 +17,8 @@ const ASSETS_TO_CACHE = [
   './js/quiz-game.js',
   './js/memory-game.js',
   './js/ayah-puzzle.js',
+  './js/prophets-quest.js',
+  './js/daily-feed.js',
   './js/kids-stories.js',
   './js/quran.js',
   './js/app.js',

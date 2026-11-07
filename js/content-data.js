@@ -424,6 +424,43 @@ const RawhContent = {
       src: "assets/audio/quran_nasr.mp3",
       fallbackSrc: "assets/audio/quran_fatihah.mp3",
       cover: "assets/icons/app-icon-circular.png"
+    },
+
+    // ----------------------------------------------------
+    // 8. أناشيد إسلامية هادفة ومميزة بإيقاع إسلامي
+    // ----------------------------------------------------
+    {
+      id: "nasheed-rhythm-mawlay",
+      title: "نشيد مولاي صلِّ وسلِّم دائماً أبداً (مديح نبوي بإيقاع دفوف إسلامية)",
+      artist: "ماهر زين (Maher Zain)",
+      category: "nasheed_rhythm",
+      categoryName: "أناشيد إسلامية هادفة بإيقاع",
+      duration: "04:30",
+      src: "assets/audio/quran_sharh.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-rhythm-ya-nabi",
+      title: "نشيد يا نبي سلام عليك يا رسول سلام عليك (إيقاع ملهم عذب)",
+      artist: "فرقة الأصالة والإنشاد الإسلامي",
+      category: "nasheed_rhythm",
+      categoryName: "أناشيد إسلامية هادفة بإيقاع",
+      duration: "03:55",
+      src: "assets/audio/quran_qadr.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
+    },
+    {
+      id: "nasheed-rhythm-assalamu-alayka",
+      title: "نشيد السلام عليك يا حبيب الله ورسوله (إيقاع هادف دافئ)",
+      artist: "كورال النور الإسلامي",
+      category: "nasheed_rhythm",
+      categoryName: "أناشيد إسلامية هادفة بإيقاع",
+      duration: "03:40",
+      src: "assets/audio/quran_duha.mp3",
+      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      cover: "assets/icons/app-icon-circular.png"
     }
   ],
 
