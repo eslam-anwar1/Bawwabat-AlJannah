@@ -36,7 +36,7 @@ Write-Host "[1/8] Compiling Android Resources with AAPT2..."
 if ($LASTEXITCODE -ne 0) { throw "AAPT2 compile failed" }
 
 Write-Host "[2/8] Linking Resources in Proto format (for AAB)..."
-& $AAPT2 link --proto-format -I $ANDROID_JAR --manifest "$ROOT\android\app\src\main\AndroidManifest.xml" --min-sdk-version 24 --target-sdk-version 34 -o "$WORK\linked_res.apk" "$WORK\compiled_res.zip" --auto-add-overlay --java "$WORK\gen"
+& $AAPT2 link --proto-format -I $ANDROID_JAR --manifest "$ROOT\android\app\src\main\AndroidManifest.xml" --min-sdk-version 24 --target-sdk-version 36 -o "$WORK\linked_res.apk" "$WORK\compiled_res.zip" --auto-add-overlay --java "$WORK\gen"
 if ($LASTEXITCODE -ne 0) { throw "AAPT2 link failed" }
 
 Write-Host "[3/8] Compiling Java Sources (MainActivity & R.java)..."
