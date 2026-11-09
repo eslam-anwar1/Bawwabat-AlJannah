@@ -1,4 +1,4 @@
-package com.rawh.islamic;
+package com.bawwabat.aljannah;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

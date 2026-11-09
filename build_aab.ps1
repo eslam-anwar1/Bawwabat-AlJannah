@@ -41,8 +41,9 @@ if ($LASTEXITCODE -ne 0) { throw "AAPT2 link failed" }
 
 Write-Host "[3/8] Compiling Java Sources (MainActivity & R.java)..."
 $javaFiles = @(
-    "$ROOT\android\app\src\main\java\com\rawh\islamic\MainActivity.java",
-    "$WORK\gen\com\rawh\islamic\R.java"
+    Get-ChildItem -Path "$ROOT\android\app\src\main\java" -Recurse -Filter *.java | Select-Object -ExpandProperty FullName
+) + @(
+    Get-ChildItem -Path "$WORK\gen" -Recurse -Filter *.java | Select-Object -ExpandProperty FullName
 )
 & $JAVAC -cp $ANDROID_JAR -sourcepath "$ROOT\android\app\src\main\java;$WORK\gen" -d "$WORK\classes" $javaFiles
 if ($LASTEXITCODE -ne 0) { throw "javac compilation failed" }

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.rawh.islamic'
+    namespace 'com.bawwabat.aljannah'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.rawh.islamic"
+        applicationId "com.bawwabat.aljannah"
         minSdk 24
         targetSdk 34
         versionCode 2
