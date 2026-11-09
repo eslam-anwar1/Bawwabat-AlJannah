@@ -53,6 +53,15 @@ const RawhApp = {
         this.switchTab(dest);
       });
     });
+
+    // دعم فتح التبويب المحدد من الرابط مباشرة
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const startTab = urlParams.get('tab') || window.location.hash.replace('#', '');
+      if (startTab && document.getElementById(`screen-${startTab}`)) {
+        this.switchTab(startTab);
+      }
+    } catch (e) {}
   },
 
   switchTab(tabId) {
