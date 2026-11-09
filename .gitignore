@@ -1,0 +1,16 @@
+# Build Tools & SDK downloads
+tools/
+tools/*
+*.zip
+*.keystore
+*.aab
+*.apk
+app-release.aab
+app-release.apk
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

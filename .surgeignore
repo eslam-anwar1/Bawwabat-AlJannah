@@ -1,0 +1,9 @@
+tools
+android
+*.zip
+*.keystore
+*.aab
+*.apk
+*.ps1
+tools/*
+android/*

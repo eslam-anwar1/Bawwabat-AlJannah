@@ -535,7 +535,10 @@ const RawhApp = {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('Service Worker Registered successfully'))
+          .then(reg => {
+            console.log('Service Worker Registered successfully');
+            if (reg) reg.update();
+          })
           .catch(err => console.log('SW registration error:', err));
       });
     }

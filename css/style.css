@@ -133,9 +133,11 @@ body {
    الحاوية العامة للشاشات
 =================================================================== */
 .app-container {
-  max-width: 580px;
+  width: 100%;
+  max-width: 440px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 14px;
+  box-sizing: border-box;
 }
 
 .app-screen {
@@ -1561,15 +1563,25 @@ body {
   justify-content: center;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  gap: 3px;
+  gap: 2px;
   cursor: pointer;
   background: none;
   border: none;
   flex: 1;
-  padding: 6px 0;
+  min-width: 0;
+  padding: 5px 1px 3px;
   transition: var(--transition);
+}
+
+.bottom-nav-item span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  line-height: 1.15;
 }
 
 .bottom-nav-item svg {

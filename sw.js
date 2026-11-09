@@ -1,5 +1,5 @@
-// بوابة الجنة - Service Worker الاحترافي للعمل بدون إنترنت (Offline-First)
-const CACHE_NAME = 'bawwabat-aljannah-v3-offline';
+// بوابة الجنة - Service Worker الاحترافي المحدث للعمل بدون إنترنت (Offline-First)
+const CACHE_NAME = 'bawwabat-aljannah-v4-mobile-clean';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -71,10 +71,28 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = event.request.url;
 
-  // تجاهل طلبات التتبع والامتدادات
   if (!url.startsWith('http')) return;
 
-  // للأصول المحلية: إستراتيجية Cache-First لضمان العمل أوفلاين بسرعة فائقة
+  const isHtmlNavigation = event.request.mode === 'navigate' || 
+    (event.request.headers && event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html'));
+
+  // لصفحات الـ HTML: استخدام Network-First لضمان ظهور التحديثات والتعديلات الفورية للمستخدم
+  if (isHtmlNavigation) {
+    event.respondWith(
+      fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
+        }
+        return networkResponse;
+      }).catch(() => {
+        return caches.match('./index.html') || caches.match(event.request);
+      })
+    );
+    return;
+  }
+
+  // لباقي الأصول (صوتيات، صور، ملفات css/js): استخدام Cache-First للأداء والعمل أوفلاين
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -90,10 +108,6 @@ self.addEventListener('fetch', (event) => {
         });
         return networkResponse;
       }).catch(() => {
-        // بدائل في حال انقطاع الشبكة
-        if (event.request.headers && event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('./index.html');
-        }
         if (url.includes('.mp3')) {
           return caches.match('./assets/audio/quran_fatihah.mp3');
         }
