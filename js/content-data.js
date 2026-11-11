@@ -340,8 +340,8 @@ const RawhContent = {
       category: "nasheed_kids",
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "02:15",
-      src: "assets/audio/quran_qadr.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_badr.wav",
+      fallbackSrc: "assets/audio/nasheed_badr.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -351,8 +351,8 @@ const RawhContent = {
       category: "nasheed_kids",
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "01:50",
-      src: "assets/audio/quran_kawthar.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_arkan.wav",
+      fallbackSrc: "assets/audio/nasheed_arkan.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -362,8 +362,8 @@ const RawhContent = {
       category: "nasheed_kids",
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "02:00",
-      src: "assets/audio/quran_sharh.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_prayer.wav",
+      fallbackSrc: "assets/audio/nasheed_prayer.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -373,8 +373,8 @@ const RawhContent = {
       category: "nasheed_kids",
       categoryName: "أناشيد الأطفال الهادفة",
       duration: "02:30",
-      src: "assets/audio/quran_duha.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_tayba.wav",
+      fallbackSrc: "assets/audio/nasheed_tayba.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
 
@@ -388,8 +388,8 @@ const RawhContent = {
       category: "nasheed_adults",
       categoryName: "أناشيد وقصائد الكبار",
       duration: "03:10",
-      src: "assets/audio/quran_duha.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_mother.wav",
+      fallbackSrc: "assets/audio/nasheed_mother.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -399,8 +399,8 @@ const RawhContent = {
       category: "nasheed_adults",
       categoryName: "أناشيد وقصائد الكبار",
       duration: "04:15",
-      src: "assets/audio/quran_sharh.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_farshi.wav",
+      fallbackSrc: "assets/audio/nasheed_farshi.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -410,8 +410,8 @@ const RawhContent = {
       category: "nasheed_adults",
       categoryName: "أناشيد وقصائد الكبار",
       duration: "03:20",
-      src: "assets/audio/quran_qadr.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_qamarun.wav",
+      fallbackSrc: "assets/audio/nasheed_qamarun.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -421,8 +421,8 @@ const RawhContent = {
       category: "nasheed_adults",
       categoryName: "أناشيد وقصائد الكبار",
       duration: "03:45",
-      src: "assets/audio/quran_nasr.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_somood.wav",
+      fallbackSrc: "assets/audio/nasheed_somood.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
 
@@ -436,8 +436,8 @@ const RawhContent = {
       category: "nasheed_rhythm",
       categoryName: "أناشيد إسلامية هادفة بإيقاع",
       duration: "04:30",
-      src: "assets/audio/quran_sharh.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_mawlay.wav",
+      fallbackSrc: "assets/audio/nasheed_mawlay.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -447,8 +447,8 @@ const RawhContent = {
       category: "nasheed_rhythm",
       categoryName: "أناشيد إسلامية هادفة بإيقاع",
       duration: "03:55",
-      src: "assets/audio/quran_qadr.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_yanabi.wav",
+      fallbackSrc: "assets/audio/nasheed_yanabi.wav",
       cover: "assets/icons/app-icon-circular.png"
     },
     {
@@ -458,8 +458,8 @@ const RawhContent = {
       category: "nasheed_rhythm",
       categoryName: "أناشيد إسلامية هادفة بإيقاع",
       duration: "03:40",
-      src: "assets/audio/quran_duha.mp3",
-      fallbackSrc: "assets/audio/quran_fatihah.mp3",
+      src: "assets/audio/nasheed_assalamu.wav",
+      fallbackSrc: "assets/audio/nasheed_assalamu.wav",
       cover: "assets/icons/app-icon-circular.png"
     }
   ],

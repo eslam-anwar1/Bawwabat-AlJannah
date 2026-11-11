@@ -38,7 +38,7 @@ const RawhDailyFeed = {
       nasheed: {
         title: "طلع البدر علينا من ثنيات الوداع",
         artist: "كورال البراعم الإسلامية (أداء صوتي)",
-        audio: "assets/audio/quran_qadr.mp3"
+        audio: "assets/audio/nasheed_badr.wav"
       },
       dua: {
         text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.",
@@ -71,7 +71,7 @@ const RawhDailyFeed = {
       nasheed: {
         title: "أمي يا نبع الحنان ورضا الرحمن",
         artist: "إنشاد إيماني دافئ وهادف",
-        audio: "assets/audio/quran_kawthar.mp3"
+        audio: "assets/audio/nasheed_mother.wav"
       },
       dua: {
         text: "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ.",
@@ -104,7 +104,7 @@ const RawhDailyFeed = {
       nasheed: {
         title: "سوف نبقى هنا كي يزول الألم",
         artist: "د. رامي محمد (أداء إيماني ملهم)",
-        audio: "assets/audio/quran_nasr.mp3"
+        audio: "assets/audio/nasheed_somood.wav"
       },
       dua: {
         text: "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.",
@@ -137,7 +137,7 @@ const RawhDailyFeed = {
       nasheed: {
         title: "قمرٌ سيدنا النبي قمر وجميل",
         artist: "كورال الصحوة الإسلامية",
-        audio: "assets/audio/quran_qadr.mp3"
+        audio: "assets/audio/nasheed_qamarun.wav"
       },
       dua: {
         text: "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي.",
@@ -170,7 +170,7 @@ const RawhDailyFeed = {
       nasheed: {
         title: "أركان الإسلام الخمسة المباركة",
         artist: "براعم الإيمان الهادفة",
-        audio: "assets/audio/quran_kawthar.mp3"
+        audio: "assets/audio/nasheed_arkan.wav"
       },
       dua: {
         text: "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ.",

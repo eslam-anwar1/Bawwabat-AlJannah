@@ -6,21 +6,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --primary-emerald: #0B3B24;
-  --primary-emerald-dark: #062215;
-  --primary-emerald-light: #135534;
-  --emerald-gradient: linear-gradient(135deg, #0D452B 0%, #08291A 100%);
-  --gold-primary: #D4AF37;
-  --gold-light: #FDE047;
-  --gold-gradient: linear-gradient(135deg, #FFE27D 0%, #D4AF37 50%, #9E7D20 100%);
-  --gold-glow: 0 0 16px rgba(212, 175, 55, 0.45);
+  /* ألوان إسلامية راقية عالية التباين والوضوح التام */
+  --primary-emerald: #065F46;        /* أخضر زمردي ملكي بارز ومشرق */
+  --primary-emerald-dark: #044E39;   /* زمردي داكن فخم */
+  --primary-emerald-light: #059669;  /* زمردي حيوي واضح */
+  --emerald-gradient: linear-gradient(135deg, #065F46 0%, #044E39 100%);
+  --emerald-glow: 0 4px 18px rgba(6, 95, 70, 0.28);
+  --gold-primary: #D97706;          /* ذهبي عنبري دافئ وواضح جداً */
+  --gold-light: #FBBF24;
+  --gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D97706 60%, #B45309 100%);
+  --gold-glow: 0 0 16px rgba(217, 119, 6, 0.35);
   
-  --bg-sand: #F4F6F3;
+  --bg-sand: #F8FAFC;               /* خلفية نقية مريحة للعين */
   --card-bg: #FFFFFF;
-  --card-border: rgba(11, 59, 36, 0.08);
-  --text-dark: #1E2922;
-  --text-muted: #64748B;
-  --text-light: #F8FAFC;
+  --card-border: rgba(6, 95, 70, 0.14);
+  --text-dark: #0F172A;             /* كحلي فحمي غامق جداً عالي الوضوح والقراءة */
+  --text-muted: #475569;            /* رمادي داكن مقروء بوضوح تام */
+  --text-light: #FFFFFF;
   
   --safe-bottom: env(safe-area-inset-bottom, 16px);
   --safe-top: env(safe-area-inset-top, 16px);
@@ -28,9 +30,9 @@
   --radius-md: 14px;
   --radius-sm: 8px;
   --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(11, 59, 36, 0.08);
-  --shadow-lg: 0 14px 35px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(6, 95, 70, 0.10);
+  --shadow-lg: 0 14px 35px rgba(0, 0, 0, 0.14);
 }
 
 * {
@@ -438,41 +440,156 @@ body {
 }
 
 .prayer-grid-item {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
   border-radius: var(--radius-md);
-  padding: 10px 12px;
+  padding: 12px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .prayer-grid-item.highlight {
-  background: #F0FDF4;
-  border-color: #86EFAC;
+  background: #ECFDF5;
+  border-color: #059669;
+  border-width: 2px;
 }
 
 .prayer-label-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .prayer-name {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A;
 }
 
 .prayer-time-val {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 800;
   color: var(--primary-emerald);
 }
 
 .prayer-notif-switch {
   cursor: pointer;
   accent-color: var(--primary-emerald);
-  transform: scale(1.15);
+  transform: scale(1.2);
+}
+
+/* بطاقات وأيقونات أدوات المسلم - ألوان غامقة متباينة وخلفيات واضحة */
+.muslim-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.muslim-tool-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: var(--transition);
+}
+
+.muslim-tool-card:hover, .muslim-tool-card:active {
+  transform: translateY(-2px);
+  border-color: var(--primary-emerald);
+  box-shadow: 0 6px 16px rgba(6, 95, 70, 0.12);
+}
+
+.muslim-tool-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #ECFDF5;
+  border: 1.5px solid #A7F3D0;
+  color: #065F46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 6px rgba(6, 95, 70, 0.12);
+}
+
+.muslim-tool-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.muslim-tool-desc {
+  font-size: 0.76rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* تحكم الأذان والصوتيات التلقائية */
+.adhan-live-control-card {
+  background: #FFFFFF;
+  border: 2px solid #059669;
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 20px rgba(6, 95, 70, 0.08);
+}
+
+.adhan-control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.adhan-control-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #065F46;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-adhan-toggle {
+  background: #065F46;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 18px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(6, 95, 70, 0.25);
+  transition: var(--transition);
+}
+
+.btn-adhan-toggle.stop {
+  background: #DC2626;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+}
+
+.voice-azkar-box {
+  background: #FFFBEB;
+  border: 1.5px solid #FCD34D;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-top: 14px;
 }
 
 /* ===================================================================
@@ -1457,12 +1574,12 @@ body {
 }
 
 /* ===================================================================
-   نافذة قراءة القصة (Story Reader Modal)
+   نافذة قراءة القصة (Story Reader Modal) - خطوط واضحة ومقروءة بنسبة 100%
 =================================================================== */
 .story-reader-modal {
   position: fixed;
   inset: 0;
-  background: var(--bg-sand);
+  background: #FFFFFF;
   z-index: 100;
   display: none;
   flex-direction: column;
@@ -1481,60 +1598,73 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid var(--gold-light);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
 }
 
 .story-reader-body {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px 18px;
-  max-width: 600px;
+  padding: 24px 20px;
+  max-width: 640px;
   margin: 0 auto;
   width: 100%;
+  background: #FFFFFF;
 }
 
 .story-reader-title {
   font-family: 'Amiri', serif;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: var(--primary-emerald);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .story-reader-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 18px;
+  font-size: 0.95rem;
+  color: #334155;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid #E2E8F0;
+  padding-bottom: 10px;
 }
 
 .story-reader-paragraphs {
   font-family: 'Amiri', serif;
-  font-size: 1.25rem;
-  line-height: 2;
-  color: var(--text-dark);
+  font-size: 1.35rem;
+  line-height: 2.2;
+  color: #0F172A;
 }
 
 .story-reader-paragraphs p {
-  margin-bottom: 16px;
-  text-indent: 12px;
+  margin-bottom: 18px;
+  text-indent: 14px;
+  color: #0F172A;
 }
 
 .story-reader-lessons {
-  background: #FEFCE8;
-  border: 1px solid #FEF08A;
+  background: #ECFDF5;
+  border: 2px solid #059669;
   border-radius: var(--radius-md);
-  padding: 16px;
-  margin-top: 20px;
+  padding: 18px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px rgba(6, 95, 70, 0.08);
 }
 
 .story-reader-lessons h4 {
-  color: #854D0E;
-  margin-bottom: 8px;
+  color: #064E3B;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .story-reader-lessons ul {
-  padding-right: 20px;
-  font-size: 0.92rem;
-  line-height: 1.8;
-  color: #713F12;
+  padding-right: 22px;
+  font-size: 1rem;
+  line-height: 2;
+  color: #064E3B;
+  font-weight: 600;
 }
 
 /* ===================================================================
@@ -1972,11 +2102,11 @@ body {
   transform: scale(0.96);
 }
 
-/* قارئ قصص الأطفال */
+/* قارئ قصص الأطفال - خطوط واضحة وتباين عالي للأطفال */
 .kids-reader-modal, .kids-video-modal {
   position: fixed;
   inset: 0;
-  background: var(--bg-sand);
+  background: #FFFFFF;
   z-index: 105;
   display: none;
   flex-direction: column;
@@ -1994,53 +2124,64 @@ body {
   max-width: 650px;
   margin: 0 auto;
   width: 100%;
+  background: #FFFFFF;
 }
 
 .kids-story-p {
   font-family: 'Amiri', serif;
-  font-size: 1.35rem;
-  line-height: 2.1;
-  color: #17241D;
-  margin-bottom: 16px;
+  font-size: 1.4rem;
+  line-height: 2.2;
+  color: #0F172A;
+  margin-bottom: 18px;
   text-indent: 14px;
+  font-weight: 500;
 }
 
 .kids-lessons-box {
-  background: #FEFCE8;
-  border: 1.5px solid #FDE047;
+  background: #ECFDF5;
+  border: 2px solid #059669;
   border-radius: var(--radius-md);
-  padding: 16px;
-  margin: 20px 0;
+  padding: 18px;
+  margin: 24px 0;
+  box-shadow: 0 4px 12px rgba(6, 95, 70, 0.08);
 }
 
 .kids-lessons-box h4 {
-  color: #854D0E;
-  margin-bottom: 8px;
+  color: #064E3B;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .kids-lessons-box ul {
-  padding-right: 20px;
-  line-height: 1.9;
-  color: #713F12;
-  font-size: 0.95rem;
+  padding-right: 22px;
+  line-height: 2;
+  color: #064E3B;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .kids-quiz-box {
-  background: #F0FDF4;
-  border: 1.5px solid #86EFAC;
+  background: #F8FAFC;
+  border: 2px solid #CBD5E1;
   border-radius: var(--radius-md);
-  padding: 16px;
-  margin-top: 16px;
+  padding: 18px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .kids-quiz-box h4 {
-  color: #166534;
-  margin-bottom: 6px;
+  color: var(--primary-emerald);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .kids-quiz-q {
   font-weight: 700;
-  margin-bottom: 12px;
+  font-size: 1.05rem;
+  color: #0F172A;
+  margin-bottom: 14px;
 }
 
 .kids-quiz-options {

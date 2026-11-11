@@ -32,6 +32,7 @@ const RawhApp = {
       if (typeof RawhMemoryGame !== 'undefined' && RawhMemoryGame.init) RawhMemoryGame.init();
       if (typeof RawhDailyFeed !== 'undefined' && RawhDailyFeed.init) RawhDailyFeed.init();
       if (typeof RawhProphetsQuest !== 'undefined' && RawhProphetsQuest.init) RawhProphetsQuest.init();
+      if (typeof RawhVoiceAzkar !== 'undefined' && RawhVoiceAzkar.init) RawhVoiceAzkar.init();
     } catch (e) {
       console.warn('Subsystem init notification:', e);
     }

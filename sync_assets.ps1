@@ -3,6 +3,7 @@ $dest = "C:\Users\samsung\Desktop\Bawwabat_AlJannah_App\android\app\src\main\ass
 
 # Copy main files
 Copy-Item "$src\index.html" "$dest\index.html" -Force
+Copy-Item "$src\privacy.html" "$dest\privacy.html" -Force
 Copy-Item "$src\manifest.json" "$dest\manifest.json" -Force
 Copy-Item "$src\sw.js" "$dest\sw.js" -Force
 Copy-Item "$src\README_GOOGLE_PLAY.md" "$dest\README_GOOGLE_PLAY.md" -Force

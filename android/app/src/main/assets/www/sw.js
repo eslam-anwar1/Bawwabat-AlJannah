@@ -1,8 +1,9 @@
 // بوابة الجنة - Service Worker الاحترافي المحدث للعمل بدون إنترنت (Offline-First)
-const CACHE_NAME = 'bawwabat-aljannah-v4-mobile-clean';
+const CACHE_NAME = 'bawwabat-aljannah-v5-complete-offline';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './privacy.html',
   './manifest.json',
   './css/style.css',
   './css/responsive.css',
@@ -20,6 +21,7 @@ const ASSETS_TO_CACHE = [
   './js/prophets-quest.js',
   './js/daily-feed.js',
   './js/kids-stories.js',
+  './js/voice-azkar.js',
   './js/quran.js',
   './js/app.js',
   './assets/icons/app-icon.svg',
@@ -38,6 +40,19 @@ const ASSETS_TO_CACHE = [
   './assets/audio/quran_ikhlas.mp3',
   './assets/audio/quran_falaq.mp3',
   './assets/audio/quran_nas.mp3',
+  './assets/audio/nasheed_badr.wav',
+  './assets/audio/nasheed_arkan.wav',
+  './assets/audio/nasheed_prayer.wav',
+  './assets/audio/nasheed_mother.wav',
+  './assets/audio/nasheed_tayba.wav',
+  './assets/audio/nasheed_farshi.wav',
+  './assets/audio/nasheed_qamarun.wav',
+  './assets/audio/nasheed_somood.wav',
+  './assets/audio/nasheed_mawlay.wav',
+  './assets/audio/nasheed_yanabi.wav',
+  './assets/audio/nasheed_assalamu.wav',
+  './assets/audio/peace_tone.wav',
+  './assets/audio/prayer_bell.wav',
   './assets/audio/water_drop.wav',
   './assets/audio/tasbeeh_click.wav',
   './assets/audio/success_chime.wav'

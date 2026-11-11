@@ -402,12 +402,97 @@
 
     <!-- 7. شاشة أدوات المسلم والمواقيت والقبلة الحية -->
     <section class="app-screen" id="screen-tools">
+      
+      <!-- أدوات المسلم الذكية اليومية - أيقونات بارزة وواضحة جداً -->
+      <div style="background: #FFFFFF; border-radius: var(--radius-lg); padding: 18px; margin-bottom: 16px; border: 1.5px solid #E2E8F0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h3 style="font-family: 'Amiri', serif; color: var(--primary-emerald); font-size: 1.35rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <span>🧰</span>
+          <span>أدوات المسلم اليومية المتكاملة</span>
+        </h3>
+
+        <div class="muslim-tools-grid">
+          <div class="muslim-tool-card" onclick="RawhPrayerTimes.toggleMakkahAdhan()">
+            <div class="muslim-tool-icon-wrapper" style="background: #ECFDF5; color: #065F46; border-color: #A7F3D0;">🕋</div>
+            <div class="muslim-tool-title">صوت الأذان</div>
+            <div class="muslim-tool-desc">تشغيل/إيقاف أذان الحرم المكي</div>
+          </div>
+
+          <div class="muslim-tool-card" onclick="RawhVoiceAzkar.triggerNextDhikr(true)">
+            <div class="muslim-tool-icon-wrapper" style="background: #FEF3C7; color: #B45309; border-color: #FCD34D;">🔊</div>
+            <div class="muslim-tool-title">ذكر صوتي</div>
+            <div class="muslim-tool-desc">تسميع ذكر صوتي مباشر</div>
+          </div>
+
+          <div class="muslim-tool-card" data-goto="quran">
+            <div class="muslim-tool-icon-wrapper" style="background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE;">📖</div>
+            <div class="muslim-tool-title">المصحف الشريف</div>
+            <div class="muslim-tool-desc">تلاوة وتفسير الآيات</div>
+          </div>
+
+          <div class="muslim-tool-card" data-goto="dhikr">
+            <div class="muslim-tool-icon-wrapper" style="background: #FDF2F8; color: #BE185D; border-color: #FBCFE8;">📿</div>
+            <div class="muslim-tool-title">المسبحة والحصن</div>
+            <div class="muslim-tool-desc">أذكار الصباح والمساء</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- بطاقة التحكم المباشر بالأذان وصوت الحرم المكي -->
+      <div class="adhan-live-control-card">
+        <div class="adhan-control-header">
+          <div class="adhan-control-title">
+            <span>🕋</span>
+            <span>الأذان التلقائي لمواقيت الصلاة</span>
+          </div>
+          <label style="display: inline-flex; align-items: center; gap: 8px; font-weight: bold; font-size: 0.9rem; color: #065F46;">
+            <span>تشغيل</span>
+            <input type="checkbox" id="master-adhan-audio-toggle" class="prayer-notif-switch" checked>
+          </label>
+        </div>
+        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px; line-height: 1.6;">
+          يرفع التطبيق أذان الحرم المكي الشريف بصوت الشيخ علي أحمد ملا تلقائياً عند دخول وقت كل صلاة، ويمكنك التحكم به في أي لحظة.
+        </p>
+        <button class="btn-play-makkah-adhan" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem;">
+          <span>🕋</span>
+          <span>استمع لأذان الحرم المكي الشريف الآن (الشيخ علي أحمد ملا)</span>
+        </button>
+      </div>
+
+      <!-- بطاقة الأذكار الصوتية التلقائية الناطقة -->
+      <div style="background: #FFFFFF; border-radius: var(--radius-lg); padding: 18px; margin-bottom: 18px; border: 2px solid #F59E0B; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.08);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h4 style="color: #B45309; font-size: 1rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+            <span>🎙️</span>
+            <span>الأذكار الصوتية التلقائية الناطقة</span>
+          </h4>
+          <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: bold; font-size: 0.9rem; color: #B45309;">
+            <span>مفعّلة</span>
+            <input type="checkbox" id="toggle-auto-voice-azkar" class="prayer-notif-switch" checked>
+          </label>
+        </div>
+        <p style="font-size: 0.84rem; color: #475569; line-height: 1.6; margin-bottom: 12px;">
+          تذكير صوتي هادئ يتردد في الخلفية بتسبيحة أو استغفار أو صلاة على النبي ﷺ لتعطير لسانك بذكر الله.
+        </p>
+        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 0.85rem; font-weight: bold; color: #0F172A;">تكرار كل:</span>
+          <select id="voice-azkar-interval-select" style="padding: 6px 12px; border-radius: 8px; border: 1.5px solid #CBD5E1; font-family: 'Cairo', sans-serif; font-size: 0.88rem; font-weight: bold; background: #FFF;">
+            <option value="15">كل 15 دقيقة</option>
+            <option value="20" selected>كل 20 دقيقة</option>
+            <option value="30">كل 30 دقيقة</option>
+            <option value="60">كل ساعة</option>
+          </select>
+          <button id="btn-play-voice-azkar-now" style="flex-grow: 1; background: #065F46; color: #FFF; border: none; border-radius: 8px; padding: 8px 12px; font-family: 'Cairo', sans-serif; font-weight: bold; font-size: 0.85rem; cursor: pointer;">
+            <span>🔊</span> <span>تسميع ذكر صوتي الآن</span>
+          </button>
+        </div>
+      </div>
+
       <!-- اختيار المدينة وتحديد الموقع -->
       <div class="prayer-summary-card">
         <div class="location-bar">
           <span style="font-weight: bold; color: var(--primary-emerald);">تحديد موقعك لمواقيت دقيقة:</span>
         </div>
-        <select id="city-selector" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #CBD5E1; margin-bottom: 10px; font-family: 'Cairo', sans-serif;">
+        <select id="city-selector" style="width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #CBD5E1; margin-bottom: 10px; font-family: 'Cairo', sans-serif; font-weight: bold;">
           <option value="غزة (فلسطين الحبيبة - التوقيت الشتوي)" selected>🇵🇸 غزة (فلسطين الحبيبة - التوقيت الشتوي)</option>
           <option value="القدس الشريف">القدس الشريف</option>
           <option value="مكة المكرمة (أم القرى)">مكة المكرمة (أم القرى)</option>
@@ -424,32 +509,27 @@
 
         <h4 style="color: var(--primary-emerald); margin: 14px 0 8px; font-size: 0.95rem;">التحكم بتنبيهات الأذان لكل صلاة:</h4>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #0F172A;">
             <span>أذان الفجر</span>
             <input type="checkbox" id="notif-fajr" class="prayer-notif-switch" checked>
           </label>
-          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #0F172A;">
             <span>أذان الظهر</span>
             <input type="checkbox" id="notif-dhuhr" class="prayer-notif-switch" checked>
           </label>
-          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #0F172A;">
             <span>أذان العصر</span>
             <input type="checkbox" id="notif-asr" class="prayer-notif-switch" checked>
           </label>
-          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #0F172A;">
             <span>أذان المغرب</span>
             <input type="checkbox" id="notif-maghrib" class="prayer-notif-switch" checked>
           </label>
-          <label style="display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 8px 12px; border-radius: 8px; font-size: 0.88rem;">
+          <label style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; color: #0F172A;">
             <span>أذان العشاء</span>
             <input type="checkbox" id="notif-isha" class="prayer-notif-switch" checked>
           </label>
         </div>
-
-        <button class="btn-play-makkah-adhan" style="width: 100%; justify-content: center; padding: 12px; margin-top: 14px; font-size: 0.95rem;">
-          <span>🕋</span>
-          <span>استمع لأذان الحرم المكي الشريف الآن (الشيخ علي أحمد ملا)</span>
-        </button>
       </div>
 
       <!-- بوصلة القبلة التفاعلية الحية -->
@@ -527,13 +607,13 @@
           تطبيق "بوابة الجنة" صُمّم بعناية فائقة ليكون دليلك ورفيقك اليومي نحو الفردوس الأعلى، جامعاً بين القرآن الكريم وتكرار التحفيظ للأطفال، قصص بر الوالدين والصلاة، الألعاب والتحديات الإيمانية التفاعلية النافعة، والسكينة الإيمانية.
         </p>
 
-        <!-- سياسة الخصوصية وحماية الملفات -->
-        <div class="privacy-notice-box">
-          <h4>🛡️ الخصوصية التامة وحماية البيانات:</h4>
-          <p>
-            • جميع بياناتك من تتابع الأيام، سقاية الحديقة، والتسبيحات تُحفظ محلياً 100% داخل هاتفك ولا تُرسل لأي خادم خارجي.<br>
-            • إحداثيات الموقع الجغرافي تُستخدم فقط داخل جهازك لحساب مواقيت الصلاة واتجاه القبلة ولا يتم تسجيلها نهائياً.<br>
-            • التطبيق خالٍ تماماً من الإعلانات المزعجة ومن أي علامات تجارية أو استضافات خارجية.
+        <!-- سياسة الخصوصية وحماية الملفات - موجزة ومقروءة -->
+        <div class="privacy-notice-box" style="background: #FFFFFF; border: 2px solid #059669; border-radius: 14px; padding: 18px; margin-top: 18px; text-align: right; box-shadow: 0 4px 14px rgba(6, 95, 70, 0.08);">
+          <h4 style="color: #065F46; font-size: 1.05rem; font-weight: bold; margin-bottom: 8px;">🛡️ الخصوصية التامة وحماية البيانات:</h4>
+          <p style="font-size: 0.92rem; color: #0F172A; line-height: 1.8; margin: 0; font-weight: 600;">
+            • <strong>تشغيل بدون إنترنت:</strong> التطبيق يعمل محلياً 100% دون اتصال.<br>
+            • <strong>أمان تام:</strong> لا نجمع أو نشارك أي بيانات شخصية للمستخدم نهائياً.<br>
+            • <strong>حفظ محلي:</strong> جميع التسبيحات وإنجازاتك تُحفظ داخل ذاكرة هاتفك فقط.
           </p>
         </div>
       </div>
@@ -709,12 +789,12 @@
     <div style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 16px 16px calc(20px + var(--safe-bottom));">
       <!-- أزرار تبديل نمط العرض -->
       <div class="theater-mode-tabs">
-        <button class="theater-tab-btn active" id="tab-btn-video-stream">📺 بث الفيديو المباشر</button>
-        <button class="theater-tab-btn" id="tab-btn-interactive-stage">🎬 مسرح المشاهد التفاعلي</button>
+        <button class="theater-tab-btn active" id="tab-btn-interactive-stage">🎬 مسرح الكرتون التفاعلي (بدون إنترنت)</button>
+        <button class="theater-tab-btn" id="tab-btn-video-stream">📺 بث الفيديو المباشر</button>
       </div>
 
-      <!-- 1. بطاقة المسرح الكرتوني التفاعلي (جاهزة 100% وتعمل دون انقطاع) -->
-      <div class="interactive-theater-card" id="theater-stage-container" style="display: none;">
+      <!-- 1. بطاقة المسرح الكرتوني التفاعلي (جاهزة 100% وتعمل دون إنترنت) -->
+      <div class="interactive-theater-card" id="theater-stage-container" style="display: block;">
         <div class="theater-scene-badge" id="theater-scene-badge">المشهد 1 من 4</div>
         <div class="theater-scene-stage" id="theater-scene-stage">
           <div class="scene-anim-char pop-in">👦🧕</div>
@@ -724,17 +804,20 @@
         
         <div class="theater-controls-row">
           <button class="btn-scene-nav" id="btn-theater-prev-scene">السابق ◀</button>
+          <button class="btn-scene-autoplay" id="btn-theater-autoplay" style="background: var(--gold-gradient); color: #062215; border: none; border-radius: var(--radius-md); padding: 8px 12px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+            <span>▶️</span> <span>تشغيل كفيديو</span>
+          </button>
           <button class="btn-scene-narration" id="btn-theater-narration">
             <span>🎙️</span>
-            <span>استمع لرواية المشهد</span>
+            <span>استمع للرواية</span>
           </button>
           <button class="btn-scene-nav" id="btn-theater-next-scene">▶ التالي</button>
         </div>
         <div id="theater-yt-link-box"></div>
       </div>
 
-      <!-- 2. حاوية بث الفيديو المباشر -->
-      <div id="theater-video-container" style="display: block; width: 100%; max-width: 520px;">
+      <!-- 2. حاوية بث الفيديو المباشر (عند توفر اتصال بالإنترنت) -->
+      <div id="theater-video-container" style="display: none; width: 100%; max-width: 520px;">
         <div class="kids-video-frame-container" style="margin-top: 0;">
           <iframe id="kids-video-iframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
@@ -807,6 +890,7 @@
   <script src="./js/prophets-quest.js"></script>
   <script src="./js/daily-feed.js"></script>
   <script src="./js/kids-stories.js"></script>
+  <script src="./js/voice-azkar.js"></script>
   <script src="./js/quran.js"></script>
   <script src="./js/app.js"></script>
 </body>

@@ -31,7 +31,15 @@ const RawhPrayerTimes = {
   nextPrayer: null,
   updateTimer: null,
 
+  isAdhanPlaying: false,
+  lastTriggeredPrayer: null,
+  autoAdhanEnabled: true,
+
   init() {
+    // استعادة إعداد الأذان التلقائي
+    const savedAutoAdhan = localStorage.getItem('bawwabat_auto_adhan_enabled');
+    this.autoAdhanEnabled = savedAutoAdhan !== null ? savedAutoAdhan === 'true' : true;
+
     // استعادة المدينة المحفوظة إن وجدت
     const saved = RawhStorage.getSavedCity();
     if (saved) {
@@ -69,27 +77,75 @@ const RawhPrayerTimes = {
       });
     }
 
-    // أزرار تشغيل أذان الحرم المكي الشريف
+    // أزرار تشغيل/إيقاف أذان الحرم المكي الشريف
     document.querySelectorAll('.btn-play-makkah-adhan').forEach(btn => {
-      btn.addEventListener('click', () => this.playMakkahAdhan());
+      btn.addEventListener('click', () => this.toggleMakkahAdhan());
     });
+
+    // مفتاح تفعيل الأذان الصوتي التلقائي العام
+    const masterAdhanToggle = document.getElementById('master-adhan-audio-toggle');
+    if (masterAdhanToggle) {
+      masterAdhanToggle.checked = this.autoAdhanEnabled;
+      masterAdhanToggle.addEventListener('change', (e) => {
+        this.autoAdhanEnabled = e.target.checked;
+        localStorage.setItem('bawwabat_auto_adhan_enabled', this.autoAdhanEnabled.toString());
+        if (window.RawhApp && RawhApp.showToast) {
+          RawhApp.showToast(this.autoAdhanEnabled ? 'تم تفعيل صوت الأذان التلقائي لمواقيت الصلاة 🕌' : 'تم إيقاف صوت الأذان التلقائي 🔇', 'info');
+        }
+      });
+    }
   },
 
-  // تشغيل أذان الحرم المكي الشريف بصوت الشيخ علي أحمد ملا
-  playMakkahAdhan() {
+  // تشغيل أو إيقاف أذان الحرم المكي الشريف
+  toggleMakkahAdhan() {
+    if (this.isAdhanPlaying) {
+      this.stopMakkahAdhan();
+    } else {
+      this.playMakkahAdhan();
+    }
+  },
+
+  playMakkahAdhan(prayerLabel) {
     if (window.RawhPlayer) {
+      this.isAdhanPlaying = true;
+      const title = prayerLabel ? `أذان ${prayerLabel} - الحرم المكي الشريف` : 'أذان الحرم المكي الشريف الخاشع (الشيخ علي أحمد ملا)';
       RawhPlayer.playTrack({
         id: 'track-adhan-makkah',
-        title: 'أذان الحرم المكي الشريف الخاشع في رحاب الكعبة المشرفة',
+        title: title,
         artist: 'المؤذن الشيخ علي أحمد ملا',
         categoryName: 'أذان الحرم المكي الشريف',
         src: 'assets/audio/adhan_makkah.mp3',
-        fallbackSrc: 'https://www.islamcan.com/audio/adhan/azan1.mp3'
+        fallbackSrc: 'assets/audio/adhan_makkah.mp3'
       });
+      this.updateAdhanButtons(true);
       if (window.RawhApp && RawhApp.showToast) {
-        RawhApp.showToast('جاري تشغيل أذان الحرم المكي الشريف (الشيخ علي أحمد ملا) 🕌✨', 'success');
+        RawhApp.showToast(`جاري رفع أذان ${prayerLabel || 'الحرم المكي'} بصوت الشيخ علي أحمد ملا 🕌✨`, 'success');
       }
     }
+  },
+
+  stopMakkahAdhan() {
+    if (window.RawhPlayer && RawhPlayer.audio) {
+      RawhPlayer.audio.pause();
+      RawhPlayer.onPlayStateChange(false);
+    }
+    this.isAdhanPlaying = false;
+    this.updateAdhanButtons(false);
+    if (window.RawhApp && RawhApp.showToast) {
+      RawhApp.showToast('تم إيقاف صوت الأذان ⏹️', 'info');
+    }
+  },
+
+  updateAdhanButtons(isPlaying) {
+    document.querySelectorAll('.btn-play-makkah-adhan').forEach(btn => {
+      if (isPlaying) {
+        btn.innerHTML = '<span>⏹️</span> <span>إيقاف صوت الأذان الآن</span>';
+        btn.classList.add('stop');
+      } else {
+        btn.innerHTML = '<span>🕋</span> <span>استمع لأذان الحرم المكي الشريف الآن (الشيخ علي أحمد ملا)</span>';
+        btn.classList.remove('stop');
+      }
+    });
   },
 
   // كشف الموقع الجغرافي بالـ GPS
@@ -319,19 +375,32 @@ const RawhPrayerTimes = {
     }
   },
 
-  // تشغيل أذان الحرم المكي الشريف بصوت الشيخ علي أحمد ملا
-  playMakkahAdhan() {
-    if (window.RawhPlayer) {
-      RawhPlayer.playTrack({
-        id: 'track-adhan-makkah',
-        title: 'أذان الحرم المكي الشريف الخاشع في رحاب الكعبة المشرفة',
-        artist: 'المؤذن الشيخ علي أحمد ملا',
-        categoryName: 'أذان الحرم المكي الشريف',
-        src: 'assets/audio/adhan_makkah.mp3',
-        fallbackSrc: 'https://www.islamcan.com/audio/adhan/azan1.mp3'
-      });
-      if (window.RawhApp && RawhApp.showToast) {
-        RawhApp.showToast('جاري تشغيل أذان الحرم المكي الشريف (الشيخ علي أحمد ملا) 🕌✨', 'success');
+  // فحص أذان الصلاة التلقائي
+  checkPrayerAdhanAlert() {
+    if (!this.autoAdhanEnabled) return;
+    const now = new Date();
+    const curH = now.getHours();
+    const curM = now.getMinutes();
+
+    const prayers = [
+      { key: 'fajr', name: 'الفجر' },
+      { key: 'dhuhr', name: 'الظهر' },
+      { key: 'asr', name: 'العصر' },
+      { key: 'maghrib', name: 'المغرب' },
+      { key: 'isha', name: 'العشاء' }
+    ];
+
+    const settings = RawhStorage.getPrayerSettings();
+
+    for (const p of prayers) {
+      const pTime = this.times[p.key];
+      if (pTime && pTime.hours24 === curH && pTime.minutes === curM) {
+        const triggerKey = `${p.key}-${now.toDateString()}`;
+        if (this.lastTriggeredPrayer !== triggerKey && settings[p.key] !== false) {
+          this.lastTriggeredPrayer = triggerKey;
+          this.playMakkahAdhan(p.name);
+          break;
+        }
       }
     }
   },
@@ -341,7 +410,8 @@ const RawhPrayerTimes = {
     this.updateTimer = setInterval(() => {
       this.determineNextPrayer();
       this.updateNextPrayerDom();
-    }, 60000); // تحديث كل دقيقة
+      this.checkPrayerAdhanAlert();
+    }, 30000); // تحديث وفحص كل 30 ثانية
   }
 };
 

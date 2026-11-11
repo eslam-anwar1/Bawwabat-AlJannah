@@ -227,6 +227,108 @@ const RawhKidsStories = {
         options: ["لا حول ولا قوة إلا بالله", "لا إله إلا أنت سبحانك إني كنت من الظالمين", "الحمد لله رب العالمين"],
         correct: 1
       }
+    },
+    {
+      id: "kids-prophet-nuh",
+      category: "prophets",
+      categoryName: "قصص الأنبياء للصغار",
+      badgeIcon: "⛵",
+      title: "سفينة نوح عليه السلام: الطاعة والنجاة الكبرى",
+      subtitle: "حكاية بناء السفينة العظيمة في الصحراء وأمر الطوفان والحيوانات",
+      duration: "5 دقائق",
+      videoUrl: "https://www.youtube.com/embed/9ZfM_U1g84A",
+      cover: "assets/icons/app-icon.svg",
+      scenes: [
+        {
+          title: "بناء السفينة في الصحراء الجافة",
+          desc: "أمر الله نبيه نوحاً أن يصنع فلكاً عظيماً فصبر على سخرية قومه وظل يبني بيقين وثقة بربه.",
+          character: "🔨⛵",
+          bgGradient: "linear-gradient(135deg, #FEF3C7, #FDE68A)"
+        },
+        {
+          title: "حمل الحيوانات من كل زوجين اثنين",
+          desc: "ركب في السفينة المؤمنون وحمل من الطيور والحيوانات من كل نوع زوجين لحفظ الحياة.",
+          character: "🦁🕊️",
+          bgGradient: "linear-gradient(135deg, #DCFCE7, #86EFAC)"
+        },
+        {
+          title: "فوران التنور وأمواج الطوفان",
+          desc: "فتحت أبواب السماء بماء منهمر وفارت الأرض بالينابيع فجرت السفينة في موج كالجبال.",
+          character: "🌊🌧️",
+          bgGradient: "linear-gradient(135deg, #BAE6FD, #7DD3FC)"
+        },
+        {
+          title: "استقرار السفينة على الجودي والسلام",
+          desc: "استقرت السفينة على جبل الجودي بسلام وقيل 'الحمد لله رب العالمين الذي نجانا من القوم الظالمين'.",
+          character: "🏔️🌈",
+          bgGradient: "linear-gradient(135deg, #ECFDF5, #A7F3D0)"
+        }
+      ],
+      content: `دعا نبي الله نوح عليه السلام قومه زمناً طويلاً ليعبدوا الله وحده، ولكنهم استكبروا. فأمره الله بصنع سفينة ضخمة من الخشب.
+كان قومه يمرون به فيسخرون قائلين: تبني سفينة في الصحراء بلا بحر؟! فكان يقول: إن تسخروا منا فإنا نسخر منكم كما تسخرون.
+وعندما جاء أمر الله، تفجرت الأرض عيوناً وأمطرت السماء، وركب نوح ومن آمن معه ومعه من كل زوجين اثنين.
+ونجت السفينة في موج كالجبال واستقرت على جبل الجودي بأمان وسلام!`,
+      lessons: [
+        "اليقين بوعد الله وطاعته مفتاح النجاة في الدنيا والآخرة.",
+        "الصبر على الاستهزاء شيمة الصالحين والأبطال.",
+        "رحمة الله بالمؤمنين وبالكائنات الحية عظيمة لا تنتهي."
+      ],
+      interactiveQuestion: {
+        question: "على أي جبل استقرت سفينة نوح عليه السلام بسلام؟",
+        options: ["جبل أحد", "جبل الجودي", "جبل الطور"],
+        correct: 1
+      }
+    },
+    {
+      id: "kids-elephant-story",
+      category: "quran_stories",
+      categoryName: "قصص القرآن المصورة",
+      badgeIcon: "🐘",
+      title: "أصحاب الفيل: حماية الكعبة المشرفة وطير أبابيل",
+      subtitle: "كيف حفظ الله بيته الحرام من جيش أبرهة وفيلته بطيور صغيرة",
+      duration: "4 دقائق",
+      videoUrl: "https://www.youtube.com/embed/gL2u-mK6WqQ",
+      cover: "assets/icons/app-icon.svg",
+      scenes: [
+        {
+          title: "جيش الفيلة الزاحف نحو مكة",
+          desc: "جاء أبرهة الأشرم بجيش عظيم وفيلة ضخمة لهدم الكعبة المشرفة وحرمان الناس منها.",
+          character: "🐘⚔️",
+          bgGradient: "linear-gradient(135deg, #FEE2E2, #FECACA)"
+        },
+        {
+          title: "امتناع الفيل محمود عن التقدم",
+          desc: "كلما وجّهوا الفيل نحو الكعبة برك في الأرض ورفض أن يخطو خطوة واحدة إجلالاً لبيت الله.",
+          character: "🐘🛑",
+          bgGradient: "linear-gradient(135deg, #FEF3C7, #FDE68A)"
+        },
+        {
+          title: "إرسال طير أبابيل بالحجارة",
+          desc: "أرسل الله عليهم طيراً أبابيل جماعات متتابعة ترميهم بحجارة من سجيل مسومة.",
+          character: "🦅🪨",
+          bgGradient: "linear-gradient(135deg, #E0E7FF, #C7D2FE)"
+        },
+        {
+          title: "عصف مأكول وأمان بيت الله",
+          desc: "أهلك الله الجيش الظالم وجعلهم كعصف مأكول، وظلت الكعبة شامخة آمنة إلى يوم القيامة.",
+          character: "🕋✨",
+          bgGradient: "linear-gradient(135deg, #DCFCE7, #86EFAC)"
+        }
+      ],
+      content: `في عام الفيل، حاول حاكم ظالم اسمه أبرهة أن يهدم الكعبة المشرفة بجيش ضخم ومعه فيلة كبيرة.
+وقف عبد المطلب جد النبي ﷺ وقال كلمته الشهيرة: "أنا رب الإبل، وإن للبيت رباً سيحميه!".
+وعندما اقترب الجيش، برك الفيل العظيم في الأرض ورفض التقدم نحو مكة!
+ثم أرسل الله طيراً أبابيل، تحمل حجارة صغيرة أهلكت المعتدين وجعلتهم كأوراق الشجر المأكولة، وحفظ الله بيته العظيم!`,
+      lessons: [
+        "الله يحفظ بيته وعباده المؤمنين بحوله وقوته العظيمة.",
+        "الغرور والقوة الزائفة تنهزم أمام قدرة الله بأبسط الأسباب.",
+        "الكعبة المشرفة قبلة المسلمين ومقدسة بحفظ الرحمن."
+      ],
+      interactiveQuestion: {
+        question: "بماذا أهلك الله جيش أصحاب الفيل كما في سورة الفيل؟",
+        options: ["برياح عاتية", "بطير أبابيل ترميهم بحجارة من سجيل", "بالطوفان"],
+        correct: 1
+      }
     }
   ],
 
@@ -253,6 +355,7 @@ const RawhKidsStories = {
         const iframe = document.getElementById('kids-video-iframe');
         if (iframe) iframe.src = '';
         this.stopSpeech();
+        this.stopAutoPlay();
       });
     }
 
@@ -260,6 +363,7 @@ const RawhKidsStories = {
     const prevSceneBtn = document.getElementById('btn-theater-prev-scene');
     const nextSceneBtn = document.getElementById('btn-theater-next-scene');
     const playNarrationBtn = document.getElementById('btn-theater-narration');
+    const autoPlayBtn = document.getElementById('btn-theater-autoplay');
 
     if (prevSceneBtn) {
       prevSceneBtn.addEventListener('click', () => this.stepScene(-1));
@@ -269,6 +373,9 @@ const RawhKidsStories = {
     }
     if (playNarrationBtn) {
       playNarrationBtn.addEventListener('click', () => this.toggleNarration());
+    }
+    if (autoPlayBtn) {
+      autoPlayBtn.addEventListener('click', () => this.toggleAutoPlayVideo());
     }
     // تبديل نمط العرض بين المسرح التفاعلي وبث الفيديو
     const tabStage = document.getElementById('tab-btn-interactive-stage');
@@ -417,46 +524,69 @@ const RawhKidsStories = {
     if (!story) return;
     this.currentStory = story;
     this.currentSceneIdx = 0;
+    this.launchTheaterUi(story.title, story.videoUrl);
+  },
 
+  // مسرح الفيديو المباشر للأطفال - يعمل محلياً 100% بدون إنترنت
+  openVideoTheater(videoUrl, title, storyId) {
+    let story = null;
+    if (storyId) {
+      story = this.stories.find(s => s.id === storyId);
+    }
+    if (!story && title) {
+      story = this.stories.find(s => title.includes(s.title) || s.title.includes(title));
+    }
+    if (!story) {
+      // اختيار أول قصة كمسرح افتراضي جاهز
+      story = this.stories[0];
+    }
+    this.currentStory = story;
+    this.currentSceneIdx = 0;
+    this.launchTheaterUi(title || story.title, videoUrl || story.videoUrl);
+  },
+
+  launchTheaterUi(displayTitle, videoUrl) {
     const modal = document.getElementById('kids-video-modal');
     const titleEl = document.getElementById('kids-video-title');
     const iframe = document.getElementById('kids-video-iframe');
     const directBtnBox = document.getElementById('theater-video-direct-btn');
 
-    if (titleEl) titleEl.innerText = `مسرح بوابة الجنة: ${story.title}`;
-    if (iframe) {
-      iframe.src = `${story.videoUrl}?rel=0&modestbranding=1&enablejsapi=1`;
+    if (titleEl) titleEl.innerText = `مسرح بوابة الجنة: ${displayTitle}`;
+
+    // إعداد رابط يوتيوب في حال رغب المستخدم في مشاهدته عند توفر إنترنت
+    if (iframe && videoUrl) {
+      iframe.dataset.src = `${videoUrl}?rel=0&modestbranding=1&enablejsapi=1`;
     }
 
-    if (directBtnBox) {
-      const directUrl = story.videoUrl.replace('/embed/', '/watch?v=');
+    if (directBtnBox && videoUrl) {
+      const directUrl = videoUrl.replace('/embed/', '/watch?v=');
       directBtnBox.innerHTML = `
         <a href="${directUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #DC2626, #B91C1C); color: #FFF; padding: 12px 24px; border-radius: 30px; font-size: 0.95rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); transition: transform 0.2s;">
           <span style="font-size: 1.2rem;">▶</span>
-          <span>مشاهدة الفيديو على تطبيق يوتيوب مباشرة ↗</span>
+          <span>مشاهدة الفيديو على تطبيق يوتيوب ↗</span>
         </a>
       `;
     }
 
-    // تفعيل تبويب بث الفيديو المباشر كافتراضي
+    // تفعيل مسرح الرسوم المتحركة التفاعلي الافتراضي للعمل بدون إنترنت
     const tabStage = document.getElementById('tab-btn-interactive-stage');
     const tabVideo = document.getElementById('tab-btn-video-stream');
     const stageBox = document.getElementById('theater-stage-container');
     const videoBox = document.getElementById('theater-video-container');
 
-    if (tabVideo && tabStage && stageBox && videoBox) {
-      tabVideo.classList.add('active');
-      tabStage.classList.remove('active');
-      videoBox.style.display = 'block';
-      stageBox.style.display = 'none';
+    if (tabStage && tabVideo && stageBox && videoBox) {
+      tabStage.classList.add('active');
+      tabVideo.classList.remove('active');
+      stageBox.style.display = 'block';
+      videoBox.style.display = 'none';
     }
 
     this.renderSceneVisual();
     modal.classList.add('active');
 
-    // كسب حسنات لمشاهدة القصة التربوية
+    // كسب حسنات لمشاهدة القصة المرئية
     if (window.RawhStorage) {
-      RawhStorage.addXP(10, 'مشاهدة قصة مرئية');
+      RawhStorage.addXP(10, 'مشاهدة فيديو مسرح الأطفال');
     }
   },
 
@@ -481,15 +611,15 @@ const RawhKidsStories = {
     if (descEl) descEl.innerText = scene.desc;
     if (badgeEl) badgeEl.innerText = `المشهد ${this.currentSceneIdx + 1} من ${this.currentStory.scenes.length}`;
 
-    // إضافة زر المشاهدة المباشرة الموثوق
+    // زر المشاهدة الخارجية إن توفر إنترنت
     const ytContainer = document.getElementById('theater-yt-link-box');
-    if (ytContainer) {
+    if (ytContainer && this.currentStory.videoUrl) {
       const directUrl = this.currentStory.videoUrl.replace('/embed/', '/watch?v=');
       ytContainer.innerHTML = `
-        <div style="margin-top: 12px; text-align: center;">
-          <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn-yt-external" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #DC2626; color: #FFF; padding: 10px 20px; border-radius: 25px; font-size: 0.88rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35); transition: transform 0.2s;">
+        <div style="margin-top: 14px; text-align: center;">
+          <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn-yt-external" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #DC2626; color: #FFF; padding: 10px 20px; border-radius: 25px; font-size: 0.88rem; text-decoration: none; font-weight: bold; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);">
             <span>▶</span>
-            <span>مشاهدة الفيديو كاملاً على يوتيوب ↗</span>
+            <span>مشاهدة كرتون القصة على يوتيوب (عند توفر إنترنت) ↗</span>
           </a>
         </div>
       `;
@@ -504,6 +634,44 @@ const RawhKidsStories = {
     if (this.isPlayingStoryAudio) {
       this.speakCurrentScene();
     }
+  },
+
+  // تشغيل المشاهد تلقائياً كفيلم كرتوني فيديو
+  toggleAutoPlayVideo() {
+    if (this.autoPlayTimer) {
+      this.stopAutoPlay();
+    } else {
+      this.startAutoPlay();
+    }
+  },
+
+  startAutoPlay() {
+    this.stopSpeech();
+    this.speakCurrentScene();
+    const btn = document.getElementById('btn-theater-autoplay');
+    if (btn) btn.innerHTML = '<span>⏸️</span> <span>إيقاف الفيديو</span>';
+
+    this.autoPlayTimer = setInterval(() => {
+      if (!this.currentStory || !this.currentStory.scenes) return;
+      if (this.currentSceneIdx < this.currentStory.scenes.length - 1) {
+        this.stepScene(1);
+        this.speakCurrentScene();
+      } else {
+        this.stopAutoPlay();
+        if (window.RawhApp && RawhApp.showToast) {
+          RawhApp.showToast('اكتمل عرض الفيديو الكرتوني للقصة بنجاح 🌟🎬', 'success');
+        }
+      }
+    }, 6000); // الانتقال كل 6 ثوانٍ
+  },
+
+  stopAutoPlay() {
+    if (this.autoPlayTimer) {
+      clearInterval(this.autoPlayTimer);
+      this.autoPlayTimer = null;
+    }
+    const btn = document.getElementById('btn-theater-autoplay');
+    if (btn) btn.innerHTML = '<span>▶️</span> <span>تشغيل كفيديو كرتوني</span>';
   },
 
   toggleNarration() {
@@ -523,7 +691,7 @@ const RawhKidsStories = {
       window.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(textToSpeak);
       utter.lang = 'ar-SA';
-      utter.rate = 0.9; // سرعة هادئة للأطفال
+      utter.rate = 0.88; // سرعة هادئة للأطفال
 
       utter.onstart = () => {
         this.isPlayingStoryAudio = true;
@@ -542,7 +710,6 @@ const RawhKidsStories = {
 
       window.speechSynthesis.speak(utter);
     } else {
-      // نغمة رنانة بديلة في حال عدم دعم النطق
       if (window.RawhPlayer) RawhPlayer.fallbackSyntheticPeaceAudio(scene.title);
     }
   },
